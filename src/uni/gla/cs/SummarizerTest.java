@@ -18,7 +18,7 @@ public class SummarizerTest {
 //    "src\\test\\resources\\data\\nytimes-obama.txt",
 //    "src\\test\\resources\\data\\glasgow.txt",
 //      "src\\test\\resources\\data\\xijinping.txt",
-    "src\\test\\resources\\data\\post.txt"
+    "src\\test\\resources\\data\\glasgow.txt"
   };
   
   @Test
@@ -41,7 +41,7 @@ public class SummarizerTest {
       LuceneSummarizer summarizer = new LuceneSummarizer();
       summarizer.setAnalyzer(new SummaryAnalyzer());
 //      summarizer.setNumSentences(2);//Original para
-      summarizer.setNumSentences(6);
+      summarizer.setNumSentences(4);
       summarizer.setTopTermCutoff(0.5F);
       summarizer.setSentenceDeboost(0.2F);
       summarizer.init();
