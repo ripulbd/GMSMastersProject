@@ -47,6 +47,7 @@ public class Test1004 {
 		String filelocation1="D://workspace//fwk//lucenedemo//one.txt";
 		String filelocation2="D://workspace//fwk//lucenedemo//two.txt";
 		String filelocation3="D://workspace//fwk//lucenedemo//three.txt";
+		
 	    // Store the index in memory:
 //	    Directory directory = new RAMDirectory();
 	    // To store an index on disk, use this instead:
