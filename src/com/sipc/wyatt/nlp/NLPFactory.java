@@ -25,9 +25,10 @@ public class NLPFactory {
 	/*
 	 * Indexing the text
 	 */
-	public void start(String[] todoName) {
+	public ArrayList<ArrayList<String> > start(String[] todoName) {
 		ArrayList<String> textList = init(todoName);
 		ArrayList<ArrayList<String> > arrList = getTSSList(textList);
+		ArrayList<ArrayList<String> > returnList = new ArrayList<ArrayList<String> >();
 		
 		// Initialize collection
 		ExCollection collection = new ExCollection(arrList);
@@ -36,8 +37,10 @@ public class NLPFactory {
 		calTfIdf(collection);
 		for(ExDocument doc : collection.getDocument()) {
 			ArrayList<String> list = findKeywords(doc, NlpConfig.NUMOFKEYWORDS);
-			System.out.println(doc.getDocID() + " " + list);
+//			System.out.println(doc.getDocID() + " " + list);
+			returnList.add(list);
 		}
+		return returnList;
 	}
 	
 	/*
