@@ -5,9 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import uni.gla.cs.config.Config;
+
 public class Stopper {
 	private static String[] stopList = null;
-	private static final String STOPLISTFILEPATH = "stoplist";
+//	private static String STOPLISTFILEPATH = "stoplist";
+	private static String STOPLISTFILEPATH=Config.stopwordfile;
 
 	/*
 	 * get stop words from STOPLISTFILEPATH, store in stopList

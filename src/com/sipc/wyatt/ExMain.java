@@ -15,6 +15,7 @@ public class ExMain {
 		String[] text = {VarDao.DESCRIPTION, VarDao.TITLE};
 		ArrayList<ArrayList<String> > keywordsList = fa.start(text);
 		System.out.println(keywordsList);
+		System.out.println(keywordsList.size());
 		/*
 		 * Summarizing
 		 */

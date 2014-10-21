@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.lucene.analysis.Analyzer;
+
+import uni.gla.cs.PorterStemAnalyzer;
+
 import com.sipc.wyatt.dao.Dao;
 
 public class NLPFactory {
@@ -114,6 +118,8 @@ public class NLPFactory {
 	public ArrayList<ArrayList<String> > getTSSList(ArrayList<String> textList) {
 		ProcessorIndexing pi = new ProcessorIndexing();
 		Stemmer stemmer = new Stemmer();
+		Analyzer analyzer = new PorterStemAnalyzer();
+		
 		ArrayList<String> stemmedList = null;
 		ArrayList<ArrayList<String> > returnList = new ArrayList<ArrayList<String> >();
 
