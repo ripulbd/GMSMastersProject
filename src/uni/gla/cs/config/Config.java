@@ -1,6 +1,6 @@
 package uni.gla.cs.config;
 
 public class Config {
-	public static String stopwordfile="src\\test\\resources\\data\\stopwords.txt";
+	public static String stopwordfile="src\\test\\resources\\data\\stopword\\stopwords.txt";
 
 }

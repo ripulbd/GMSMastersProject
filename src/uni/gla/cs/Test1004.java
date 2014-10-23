@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Collection;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.KeywordAnalyzer;
@@ -30,71 +31,84 @@ import org.apache.lucene.store.LockObtainFailedException;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
-
 public class Test1004 {
-	
+
 	@SuppressWarnings("deprecation")
-	public static void main(String[] args) throws CorruptIndexException, LockObtainFailedException, IOException, ParseException {
-//		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
-//		Analyzer analyzer = new PorterStemAnalyzer();
-//		Analyzer analyzer=new StopAnalyzer(Version.LUCENE_CURRENT);
-		Analyzer analyzer=new StandardAnalyzer(Version.LUCENE_CURRENT);
-//		Analyzer analyzer=new WhitespaceAnalyzer(Version.LUCENE_CURRENT);
-//		Analyzer analyzer=new KeywordAnalyzer();
-//		
-		
-		String path = "D://workspace//fwk//lucenedemo//firstLuceneIndex";
-		String filelocation1="D://workspace//fwk//lucenedemo//one.txt";
-		String filelocation2="D://workspace//fwk//lucenedemo//two.txt";
-		String filelocation3="D://workspace//fwk//lucenedemo//three.txt";
-		
-	    // Store the index in memory:
-//	    Directory directory = new RAMDirectory();
-	    // To store an index on disk, use this instead:
-	    Directory directory = FSDirectory.open(new File(path));
-	    IndexWriter iwriter = new IndexWriter(directory, analyzer, true,
-	    		IndexWriter.MaxFieldLength.LIMITED);
+	public static void main(String[] args) throws CorruptIndexException,
+			LockObtainFailedException, IOException, ParseException {
+		// Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
+		// Analyzer analyzer = new PorterStemAnalyzer();
+		// Analyzer analyzer=new StopAnalyzer(Version.LUCENE_CURRENT);
+		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
+		// Analyzer analyzer=new WhitespaceAnalyzer(Version.LUCENE_CURRENT);
+		// Analyzer analyzer=new KeywordAnalyzer();
+		//
 
-	    Document doc0 = new Document();
-	    Document doc1 = new Document();
-	    Document doc2 = new Document();
+		String path = "src\\test\\resources\\data\\index";
+		File indexpath = new File(path);
+//		indexpath.delete();
+		File indexfiles[] = indexpath.listFiles();
+		for (File file : indexfiles) {
+			file.delete();
+		}
+//		String filelocation0 = "src\\test\\resources\\data\\xijinping3.txt";
+//		String filelocation1 = "src\\test\\resources\\data\\xijinping2.txt";
+//		String filelocation2 = "src\\test\\resources\\data\\xijinping.txt";
+		File dir = new File("src\\test\\resources\\data\\");
+		File file[] = dir.listFiles();
 
-	    doc0.add(new  Field("fieldname",   new  FileReader(filelocation1)));
-	    doc1.add(new  Field("fieldname",   new  FileReader(filelocation2)));
-	    doc2.add(new  Field("fieldname",   new  FileReader(filelocation3)));
-	    iwriter.addDocument(doc0);
-	    iwriter.addDocument(doc1);
-	    iwriter.addDocument(doc2);
-	   
-	   
-	    iwriter.optimize();
-	    iwriter.close();
-	    
-	    // Now search the index:
-//	    IndexReader ireader = IndexReader.open(directory); // read-only=true
-//	    IndexSearcher isearcher = new IndexSearcher(ireader);
-	    Searcher isearcher=new IndexSearcher(directory);
-	    
-	    // Parse a simple query that searches for "text":
-	    QueryParser parser = new QueryParser(Version.LUCENE_CURRENT, "fieldname", analyzer);
-	    Query query = parser.parse("¶Î");
+		// Store the index in memory:
+		// Directory directory = new RAMDirectory();
+		// To store an index on disk, use this instead:
+		Directory directory = FSDirectory.open(new File(path));
+		IndexWriter iwriter = new IndexWriter(directory, analyzer, true,
+				IndexWriter.MaxFieldLength.LIMITED);
+		for (int i = 0; i < file.length; i++) {
+			Document doc = new Document();
+			if (!file[i].isDirectory()) {
+				doc.add(new Field("fieldname", new FileReader(file[i])));
+				iwriter.addDocument(doc);
+			}
+			
+		}
+		// Document doc0 = new Document();
+		// Document doc1 = new Document();
+		// Document doc2 = new Document();
+		//
+		// doc0.add(new Field("fieldname", new FileReader(filelocation0)));
+		// doc1.add(new Field("fieldname", new FileReader(filelocation1)));
+		// doc2.add(new Field("fieldname", new FileReader(filelocation2)));
+		// iwriter.addDocument(doc0);
+		// iwriter.addDocument(doc1);
+		// iwriter.addDocument(doc2);
+
+		iwriter.optimize();
+		iwriter.close();
+
+		// Now search the index:
+		// IndexReader ireader = IndexReader.open(directory); // read-only=true
+		// IndexSearcher isearcher = new IndexSearcher(ireader);
+		Searcher isearcher = new IndexSearcher(directory);
+		
+		// Parse a simple query that searches for "text":
+		QueryParser parser = new QueryParser(Version.LUCENE_CURRENT,
+				"fieldname", analyzer);
+		Query query = parser.parse("Angeles in to Occidental College");
 		ScoreDoc[] hits = isearcher.search(query, 1000).scoreDocs;
-	    // Iterate through the results:
-   
+		// Iterate through the results:
+		// TopDocs scoredoc= isearcher.search(query, 100);
+		// System.out.println( scoredoc.totalHits);
+		System.out.println(hits.length);
 
-//	    TopDocs scoredoc= isearcher.search(query, 100);
-//	    System.out.println( scoredoc.totalHits);
-	    System.out.println(hits.length);
-   
-	    for (int i = 0; i < hits.length; i++) {
-	      Document hitDoc = isearcher.doc(hits[i].doc);
-//	      System.out.println(hitDoc.get("fieldname"));
-	      System.out.println(hits[i].score);
-	      System.out.println(hits[i].toString());
-	    }
-	    isearcher.close();
-//	    ireader.close();
-	    directory.close();
+		for (int i = 0; i < hits.length; i++) {
+			Document hitDoc = isearcher.doc(hits[i].doc);
+			// System.out.println(hitDoc.get("fieldname"));
+			System.out.println(hits[i].score);
+			System.out.println(hits[i].toString());
+		}
+		isearcher.close();
+		// ireader.close();
+		directory.close();
+		
 	}
-
 }

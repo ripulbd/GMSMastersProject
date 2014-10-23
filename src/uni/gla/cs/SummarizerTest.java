@@ -18,7 +18,7 @@ public class SummarizerTest {
 //    "src\\test\\resources\\data\\nytimes-obama.txt",
 //    "src\\test\\resources\\data\\glasgow.txt",
 //      "src\\test\\resources\\data\\xijinping.txt",
-    "src\\test\\resources\\data\\glasgow.txt"
+    "src\\test\\resources\\data\\test.txt"
   };
   
   @Test

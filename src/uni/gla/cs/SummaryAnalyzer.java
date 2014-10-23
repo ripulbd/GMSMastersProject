@@ -34,7 +34,7 @@ public class SummaryAnalyzer extends Analyzer {
 public SummaryAnalyzer() throws IOException {
     String[] stopwords = filterComments(StringUtils.split(
       FileUtils.readFileToString(new File(
-      "src\\test\\resources\\data\\stopwords.txt"), "UTF-8")));
+      "src\\test\\resources\\data\\stopword\\stopwords.txt"), "UTF-8")));
     List<String> stopwords_=new ArrayList<String>();
     for (int i = 0; i < stopwords.length; i++) {
     	stopwords_.add(stopwords[i].toString());
