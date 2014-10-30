@@ -12,7 +12,7 @@
     
 <meta content="text/html; charset=utf-8" http-equiv="content-type">
     
-<link href="resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
+<link href="/resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
     
 <script src="resources/javascripts/modernizr-1.5.min.js" type="text/javascript"></script>
 
@@ -45,155 +45,20 @@
                     
 <ul id="menu-bar" style="left: 0px; top: 18px">
 
-{{range $index, $element := .SubTopics}} 
-                       
-<li class="active"> 
-{{if $element.Name}}                         
+ 
+ 
+{{range $index, $element := .SubTopics}}  
+<li class="active">                       
   <a href="/">{{printf "%s" $element.Name}}</a>
-{{end}}
+
+{{range $index2, $e1 := $element.SubTopics}}
 <ul>
-
-{{range $index1, $e := $element.SubTopics}}
-  <a href="/bbc" onclick="return check()" >{{printf "%s" $e.Name}}</a>
-								
-
-  <a href="/dr">Subtopic 2</a>
-
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a></li>
-                                                                                         
-</ul>                          
+ <li> <a href="#" >{{printf "%s" $e1.Name}}</a></li>
+</ul> 
+{{end}}
 </li>
 {{end}}
-{{end}}
 								
-<li>
-                            
-<a href="/today">Topic 2</a>
-
-<ul>
-<li>
-<a href="/bbc">Subtopic 1</a>
-</li>
-								
-<li>
-<a href="/dr">Subtopic 2</a>
-</li>
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a></li>
-
-                                                                
-                            
-</ul>
-                        
-</li>
-                        
-<li>
-                            
-<a href="/news">Topic 3</a>
-
-                            
-<ul>
-                                
-<li>
-<a href="/bbc">Subtopic 1</a>
-</li>
-								
-<li>
-<a href="/dr">Subtopic 2</a>
-</li>
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a>
-</li>
-
-                                                               
-                            
-</ul>
-                        
-</li>
-
-                        
-<li>
-                            
-<a href="/blog">Topic 4</a>
-
-                            
-<ul>
-                                
-<li>
-<a href="/bbc">Subtopic 1</a>
-</li>
-								
-<li>
-<a href="/dr">Subtopic 2</a>
-</li>
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a>
-</li>
-
-                                                               
-                            
-</ul>
-                        
-</li>
-
-                        
-<li>
-                            
-<a href="/image">Topic 5</a>
-
-                            
-<ul>
-                                
-<li>
-<a href="/bbc">Subtopic 1</a>
-</li>
-								
-<li>
-<a href="/dr">Subtopic 2</a>
-</li>
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a>
-</li>
-
-                                                               
-                            
-</ul>
-                       
-</li>
-
-                        
-<li>
-                            
-<a href="/video">Topic 6</a>
-
-                            
-<ul>
-                                
-<li>
-<a href="/bbc">Subtopic 1</a>
-</li>
-								
-<li>
-<a href="/dr">Subtopic 2</a>
-</li>
-                                
-<li>
-<a href="/scotsman">Subtopic 3</a>
-</li>
-
-                                                                
-                            
-</ul>
-
-                        
-</li>
-
                                             
 </ul>
                 
