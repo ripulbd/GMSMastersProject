@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topic>
+	<subtopic name = "News">
+		<subtopic name = "Economics">
+		</subtopic>
+		<subtopic name = "Educations">
+		</subtopic>
+		<subtopic name = "Sports">
+			<subtopic  name = "Football">
+				<keyword name = "World Cup" />             
+				<keyword name = "Fifa" />             
+			</subtopic>
+		</subtopic>
+		<subtopic name = "Politics">
+		</subtopic>
+	</subtopic>
+</topic>	
