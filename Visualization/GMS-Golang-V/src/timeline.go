@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"regexp"
 	"html/template"
+//	"unicode/utf8"
 )
 
 var (
@@ -161,6 +162,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 
 func main() {
 	flag.Parse()
+	http.HandleFunc("/", makeHandler(timelineHandler))
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
     
