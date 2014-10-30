@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+<title>Glasgow Memory Server (GMS)</title>
+    
+<!--meta(name='description', content='website description')-->
+    
+<!--meta(name='keywords', content='website keywords, website keywords')-->
+    
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+    
+<link href="resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
+    
+<script src="resources/javascripts/modernizr-1.5.min.js" type="text/javascript"></script>
+
+</head>
+
+
+<body>
+    
+
+    
+<div id="main">
+        
+<header>
+            
+<div id="logo">
+                
+<div id="logo_text">
+                    
+<!--class="logo_colour", allows you to change the colour of the text -->
+
+                    
+<h1><a href="index.html">Glasgow Memory Server(GMS)</a></h1>
+                
+</div>
+            
+</div>           
+            
+                
+<div id="menu_container">
+                    
+<ul id="menu-bar" style="left: 0px; top: 18px">
+
+{{range $index, $element := .SubTopics}} 
+                       
+<li class="active"> 
+{{if $element.Name}}                         
+  <a href="/">{{printf "%s" $element.Name}}</a>
+{{end}}
+<ul>
+
+{{range $index1, $e := $element.SubTopics}}
+  <a href="/bbc" onclick="return check()" >{{printf "%s" $e.Name}}</a>
+								
+
+  <a href="/dr">Subtopic 2</a>
+
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a></li>
+                                                                                         
+</ul>                          
+</li>
+{{end}}
+{{end}}
+								
+<li>
+                            
+<a href="/today">Topic 2</a>
+
+<ul>
+<li>
+<a href="/bbc">Subtopic 1</a>
+</li>
+								
+<li>
+<a href="/dr">Subtopic 2</a>
+</li>
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a></li>
+
+                                                                
+                            
+</ul>
+                        
+</li>
+                        
+<li>
+                            
+<a href="/news">Topic 3</a>
+
+                            
+<ul>
+                                
+<li>
+<a href="/bbc">Subtopic 1</a>
+</li>
+								
+<li>
+<a href="/dr">Subtopic 2</a>
+</li>
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a>
+</li>
+
+                                                               
+                            
+</ul>
+                        
+</li>
+
+                        
+<li>
+                            
+<a href="/blog">Topic 4</a>
+
+                            
+<ul>
+                                
+<li>
+<a href="/bbc">Subtopic 1</a>
+</li>
+								
+<li>
+<a href="/dr">Subtopic 2</a>
+</li>
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a>
+</li>
+
+                                                               
+                            
+</ul>
+                        
+</li>
+
+                        
+<li>
+                            
+<a href="/image">Topic 5</a>
+
+                            
+<ul>
+                                
+<li>
+<a href="/bbc">Subtopic 1</a>
+</li>
+								
+<li>
+<a href="/dr">Subtopic 2</a>
+</li>
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a>
+</li>
+
+                                                               
+                            
+</ul>
+                       
+</li>
+
+                        
+<li>
+                            
+<a href="/video">Topic 6</a>
+
+                            
+<ul>
+                                
+<li>
+<a href="/bbc">Subtopic 1</a>
+</li>
+								
+<li>
+<a href="/dr">Subtopic 2</a>
+</li>
+                                
+<li>
+<a href="/scotsman">Subtopic 3</a>
+</li>
+
+                                                                
+                            
+</ul>
+
+                        
+</li>
+
+                                            
+</ul>
+                
+</div>            
+        
+</header>
+
+        
+<body>
+</body>
+</html>
+
