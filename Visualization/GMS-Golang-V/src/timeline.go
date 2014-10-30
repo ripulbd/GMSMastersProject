@@ -6,10 +6,10 @@ import (
 //	"gopkg.in/mgo.v2/bson"
 	"flag"
 	"encoding/xml"
-    "io"
-    "os"
-    "path/filepath"
-    "io/ioutil"
+	"io"
+	"os"
+	"path/filepath"
+	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -33,7 +33,8 @@ type SubTopic struct{
 }
 
 type Keyword struct{
-	Name 		string 			`xml:"name,attr"` 
+	Name 		string 			`xml:"name,attr"`
+//	Weight		int 
 }
 
 func readTopic(reader io.Reader) (Topic, error) {
@@ -63,7 +64,7 @@ func readTopic(reader io.Reader) (Topic, error) {
     		}else if inElement =="topic"{
     			//Praser will finish here in once time.
     			decoder.DecodeElement(&topic, &se)
-    			fmt.Println(topic)
+//    			fmt.Println(topics)
     		}
     	}
     }
@@ -161,6 +162,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 func main() {
 	flag.Parse()
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
+	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
     
     if *addr {
 		l, err := net.Listen("tcp", "127.0.0.1:0")
