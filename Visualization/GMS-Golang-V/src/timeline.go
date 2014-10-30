@@ -2,18 +2,24 @@ package main
 
 import (
 	"fmt"
+//	"gopkg.in/mgo.v2"
+//	"gopkg.in/mgo.v2/bson"
 	"flag"
 	"encoding/xml"
     "io"
     "os"
     "path/filepath"
+    "io/ioutil"
+	"log"
+	"net"
+	"net/http"
+	"regexp"
+	"html/template"
 )
 
-//type Topic struct{
-//	Keywords 	[]string
-//	SubTopics 	[]Topic
-//	ParentTopic *Topic
-//}
+var (
+	addr = flag.Bool("addr", false, "find open address and print to final-port.txt")
+)
 
 type Topic struct{
 	Name		xml.Name		`xml:"topic"`
@@ -30,13 +36,13 @@ type Keyword struct{
 	Name 		string 			`xml:"name,attr"` 
 }
 
-func ReadXML(reader io.Reader) ([]SubTopic, error) {
+func readTopic(reader io.Reader) (Topic, error) {
    
     decoder := xml.NewDecoder(reader)
     var topic Topic
-	results := make([]SubTopic,10)
+//	results := make([]SubTopic,10)
 	var inElement string
-	total := 0
+//	total := 0
     for { 
 	  	t,_ := decoder.Token()
 	   	if t == nil { 
@@ -46,27 +52,27 @@ func ReadXML(reader io.Reader) ([]SubTopic, error) {
     	case xml.StartElement:
     		inElement = se.Name.Local
     		if inElement == "subtopic" {
-    			var t1 SubTopic 
+    			//will remove this condition in the future
+    			/*var t1 SubTopic 
     			decoder.DecodeElement(&t1, &se)
     			fmt.Println(t1.Name)
     			fmt.Println(t1.SubTopics)
     			fmt.Println(t1.Keywords)
     			results[total] = t1
-    			total++
+    			total++*/
     		}else if inElement =="topic"{
+    			//Praser will finish here in once time.
     			decoder.DecodeElement(&topic, &se)
     			fmt.Println(topic)
     		}
     	}
     }
 
-    return topic.SubTopics	, nil
+    return topic	, nil
 }
 
-func main() {
-	flag.Parse()
-
-    xmlPath, err := filepath.Abs("xmlDemo.xml")
+func readXML()(Topic){
+	xmlPath, err := filepath.Abs("xmlDemo.xml")
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
@@ -81,13 +87,96 @@ func main() {
     defer file.Close()
 
 
-    xmlDemo, err := ReadXML(file)
+    topic, err := readTopic(file)
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
     }
+    return topic
+}
 
-    fmt.Printf("Key: %s ", xmlDemo[0].SubTopics[2].SubTopics[0].Keywords[1])
+func timelineHandler(w http.ResponseWriter, r *http.Request) {
+	/*session, err := mgo.Dial("localhost")
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("gmsTry").C("gmsNews")
+	*/
+	
+	
+	topic := readXML();
+
+	renderTemplate(w, "timeline", &topic)
+}
+
+var funcMap = template.FuncMap{
+        // The name "inc" is what the function will be called in the template text.
+        "inc": func(i int) int {
+            return i + 1
+        },
+}
+
+var templates = template.Must(template.New("test").Funcs(funcMap).ParseFiles("timeline.html"))
+
+func renderTemplate(w http.ResponseWriter, tmpl string, p *Topic) {
+	// Execute the template for each recipient.
+	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	/*for _, r := range *p {
+		err := templates.ExecuteTemplate(w, tmpl+".html", r)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+	}*/
+
+}
+
+
+
+var validPath = regexp.MustCompile("^/(index|save|view)$")
+
+func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		/*m := validPath.FindStringSubmatch(r.URL.Path)
+		if m == nil {
+			http.NotFound(w, r)
+			return
+		}*/
+
+		//title := result.Title
+		//fmt.Println("Phone:", result.mainStory)
+
+		fn(w, r)
+	}
+}
+
+
+func main() {
+	flag.Parse()
+	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
+    
+    if *addr {
+		l, err := net.Listen("tcp", "127.0.0.1:0")
+		if err != nil {
+			log.Fatal(err)
+		}
+		err = ioutil.WriteFile("final-port.txt", []byte(l.Addr().String()), 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		s := &http.Server{}
+		s.Serve(l)
+		return
+	}
+
+	http.ListenAndServe(":8090", nil)
 	
 }
 
