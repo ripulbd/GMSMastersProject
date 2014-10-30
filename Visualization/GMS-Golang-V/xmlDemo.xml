@@ -2,16 +2,60 @@
 <topic>
 	<subtopic name = "News">
 		<subtopic name = "Economics">
+			<subtopic  name = "Business">
+				<keyword name = "Deals" />                         
+			</subtopic>
+			<subtopic  name = "Finance">
+				<keyword name = "Bank" />             
+				<keyword name = "Trade" />       
+				<keyword name = "Money" />  				
+			</subtopic>
 		</subtopic>
 		<subtopic name = "Educations">
+			<keyword name = "University" />             
+			<keyword name = "School" /> 
+			<keyword name = "Invention" /> 			
 		</subtopic>
 		<subtopic name = "Sports">
+			<keyword name = "player" />             
+			<keyword name = "health" />  
 			<subtopic  name = "Football">
 				<keyword name = "World Cup" />             
 				<keyword name = "Fifa" />             
 			</subtopic>
+			<subtopic  name = "Tennis">
+				<keyword name = "Scores" />             
+				<keyword name = "ATP" />             
+			</subtopic>
+			<subtopic  name = "Boxing">
+				<keyword name = "ThaiBoxing" />             
+				<keyword name = "K1" />             
+			</subtopic>
+			<subtopic  name = "Swimming">
+				<keyword name = "metres" />             
+				<keyword name = "speed" />             
+			</subtopic>
+		</subtopic>
+		<subtopic name = "Socials">
+			<subtopic  name = "Incidence">
+				<keyword name = "Facebook" />             
+				<keyword name = "Twitter" />             
+			</subtopic>
+			<subtopic  name = "Accident">
+				<keyword name = "Flckr" />             
+				<keyword name = "Instragram" />             
+			</subtopic>
 		</subtopic>
 		<subtopic name = "Politics">
+			<subtopic  name = "ScottishIndepencdence">
+				<keyword name = "vote" />             
+				<keyword name = "against" />  
+				<keyword name = "support" /> 				
+			</subtopic>
+			<subtopic  name = "ScottishReferendum">
+				<keyword name = "vote" />             
+				<keyword name = "polls" />             
+			</subtopic>
 		</subtopic>
 	</subtopic>
 </topic>	
