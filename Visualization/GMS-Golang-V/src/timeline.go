@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-//	"gopkg.in/mgo.v2"
-//	"gopkg.in/mgo.v2/bson"
+    //"gopkg.in/mgo.v2"
+    //"gopkg.in/mgo.v2/bson"
 	"flag"
 	"encoding/xml"
+	"encoding/json"
 	"io"
 	"os"
 	"path/filepath"
@@ -31,6 +32,10 @@ type Topic struct{
 type Keyword struct{
 	Name 		string 			`xml:"name,attr"`
 //	Weight		int 
+}
+
+type Subtopic struct{
+	Name      []string          `xml:"name,attr"`
 }
 
 func readTopic(reader io.Reader) (Topic, error) {
@@ -166,12 +171,39 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	}
 }
 
+func createSubtopicTags(w http.ResponseWriter, r *http.Request){
+
+    //take the tagname from the url	and print it
+	tagname := r.URL.Query()["tagname"][0];
+	fmt.Printf("Query: %s\n", tagname)
+	
+	/*session, err := mgo.Dial("localhost")
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()*/
+	
+	//find the specific topic in XML which has equal name with tagname
+	topic := readTopicNameXML(tagname);
+	
+	//send it back to html
+	js, err := json.Marshal(topic)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+		
+	w.Header().Set("Content-Type", "application/json")
+  	w.Write(js)
+}
+
 
 func main() {
 	flag.Parse()
 	http.HandleFunc("/", makeHandler(timelineHandler))
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
+	http.HandleFunc("/subtags", makeHandler(createSubtopicTags))
     
     if *addr {
 		l, err := net.Listen("tcp", "127.0.0.1:0")

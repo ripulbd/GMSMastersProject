@@ -16,6 +16,28 @@
     
 <script src="resources/javascripts/modernizr-1.5.min.js" type="text/javascript"></script>
 
+<script>
+//$(document).on("click", ".subtag", function(){
+function getData(){
+$.get("/subtags?tagname="+name, "", function(data, status) {
+}
+
+var nextData = data.Subtopics;
+var size = data.Subtopics.length;
+var ul=document.createElement('ul');
+  for(i = 0; i < size; i++){ 
+    var li=document.createElement('li');
+    ul.appendChild(li);
+	var a = document.createElement('a');
+	li.appendChild(a);
+    var linkText = document.createTextNode(data[i].SubTopics.Name);
+    a.appendChild(linkText);
+    //a.href = "/subtags?tagname=" + data[i].SubTopics.Name;
+
+}
+}
+</script>
+
 </head>
 
 
@@ -44,18 +66,15 @@
 <div id="menu_container">
                     
 <ul id="menu-bar" style="left: 0px; top: 18px">
-
- 
  
 {{range $index, $element := .SubTopics}}  
 <li class="active">                       
   <a href="/">{{printf "%s" $element.Name}}</a>
-
-{{range $index2, $e1 := $element.SubTopics}}
 <ul>
- <li> <a href="#" >{{printf "%s" $e1.Name}}</a></li>
-</ul> 
+{{range $index2, $e1 := $element.SubTopics}}
+<li class="subtag"> <a href="/subtags?tagname={{$e1.Name}}" >{{printf "%s" $e1.Name}}</a></li>
 {{end}}
+</ul> 
 </li>
 {{end}}
 								
