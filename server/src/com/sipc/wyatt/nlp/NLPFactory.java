@@ -8,14 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.lucene.analysis.Analyzer;
-
-import uni.gla.cs.PorterStemAnalyzer;
-
 import com.sipc.wyatt.dao.Dao;
 
 public class NLPFactory {
 	private ArrayList<String> tokenList = new ArrayList<String>();
+	private ArrayList<String> todoList = new ArrayList<String>();
 
 	public NLPFactory() {
 		
@@ -28,12 +25,16 @@ public class NLPFactory {
 	
 	/*
 	 * Indexing the text
+	 * @return keyword
 	 */
 	public ArrayList<ArrayList<String> > start(String[] todoName) {
 		ArrayList<String> textList = init(todoName);
 		ArrayList<ArrayList<String> > arrList = getTSSList(textList);
 		ArrayList<ArrayList<String> > returnList = new ArrayList<ArrayList<String> >();
 		
+		for(String text : textList) {
+			todoList.add(text);
+		}
 		// Initialize collection
 		ExCollection collection = new ExCollection(arrList);
 		CollectionStatistics cs = new CollectionStatistics(collection);
@@ -118,8 +119,6 @@ public class NLPFactory {
 	public ArrayList<ArrayList<String> > getTSSList(ArrayList<String> textList) {
 		ProcessorIndexing pi = new ProcessorIndexing();
 		Stemmer stemmer = new Stemmer();
-		Analyzer analyzer = new PorterStemAnalyzer();
-		
 		ArrayList<String> stemmedList = null;
 		ArrayList<ArrayList<String> > returnList = new ArrayList<ArrayList<String> >();
 
@@ -141,4 +140,13 @@ public class NLPFactory {
 		}
 		return returnList;
 	}
+
+	public ArrayList<String> getTodoList() {
+		return todoList;
+	}
+
+	public void setTodoList(ArrayList<String> todoList) {
+		this.todoList = todoList;
+	}
+	
 }

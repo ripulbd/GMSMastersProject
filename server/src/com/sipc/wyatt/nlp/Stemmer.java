@@ -2,9 +2,6 @@ package com.sipc.wyatt.nlp;
 
 import org.tartarus.snowball.ext.PorterStemmer;
 
-
-
-
 public class Stemmer {
 	PorterStemmer stemmer = null;
 

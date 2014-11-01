@@ -1,0 +1,2317 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#"
+     xml:base="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews">
+        <rdfs:comment rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasHappenedAt -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasHappenedAt">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasMentioned -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasMentioned">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#isAbout">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Organisation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Accident -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Accident">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anderston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anderston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anniesland -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anniesland">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Arden -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Arden">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Assault -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Assault">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Homicide"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Atheletics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Atheletics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Badminton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Badminton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Baillieston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Baillieston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Balornock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Balornock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Barmulloch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Barmulloch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Battlefield -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Battlefield">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#BlythswoodHill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#BlythswoodHill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Book -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Book">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#BotanicGardens -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#BotanicGardens">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bowls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bowls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Boxing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Boxing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bridgeton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bridgeton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Broomhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Broomhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Burglary -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Burglary">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Business -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Business">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Economics"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SportEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGAthelatics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGAthelatics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBadminton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBadminton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBowls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBowls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBoxing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBoxing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGCycling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGCycling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGDiving -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGDiving">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGGymnastics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGGymnastics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGHockey -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGHockey">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGJudo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGJudo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGNetball -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGNetball">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGRugbySevens -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGRugbySevens">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGShooting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGShooting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSquash -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSquash">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSwimming -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSwimming">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTableTennis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTableTennis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTriathlon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTriathlon">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWeightlifting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWeightlifting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWrestling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWrestling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Calton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Calton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cardonald -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cardonald">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carmunnock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carmunnock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G76"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carmyle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carmyle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carntyne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carntyne">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carnwadric -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carnwadric">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Castlemilk -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Castlemilk">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G45"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cathcart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cathcart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Celtic -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Celtic">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Club"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rangers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cleveden -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cleveden">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ClosingCeremony -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ClosingCeremony">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Club -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Club">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Football"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowcaddens -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowcaddens">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowlairs -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowlairs">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Craigend -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Craigend">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cranhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cranhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cricket -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cricket">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Incidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Croftfoot -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Croftfoot">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crookston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crookston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cultural -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cultural">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SocialEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Currency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Currency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finance"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockMarket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cycling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cycling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dalmarnock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dalmarnock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Darnley -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Darnley">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Deaconsbank -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Deaconsbank">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dennistoun -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dennistoun">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dowanhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dowanhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drug -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drug">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drumchapel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drumchapel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G15"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drygate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drygate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#EPL -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#EPL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#League"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Easterhouse -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Easterhouse">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Economics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Economics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Education -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Education">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Employment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Employment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Business"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Investment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Environment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Environment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#F1 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#F1">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Racing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Film -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Film">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finance -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finance">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Economics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finnieston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finnieston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Football -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Football">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G1 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G1">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G14 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G14">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G15 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G15">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G2">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G22 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G22">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G23 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G23">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G41 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G41">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G45 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G45">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G5 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G5">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G76 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G76">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Games -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Games">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garnethill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garnethill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garrowhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garrowhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garthamlock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garthamlock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Golf -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Golf">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Gorbals -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Gorbals">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G5"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govanhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govanhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Gymnastics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Gymnastics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Haghill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Haghill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Health -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Health">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillhead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillhead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillington -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillington">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hockey -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hockey">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Homicide -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Homicide">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hyndland -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hyndland">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ibrox -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ibrox">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Incidence -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Incidence">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Investment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Investment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Business"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Judo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Judo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvinbridge -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvinbridge">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvindale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvindale">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kennishead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kennishead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kidnap -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kidnap">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Homicide"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kinning_Park -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kinning_Park">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Knightswood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Knightswood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#LALiga -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#LALiga">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#League"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Lambhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Lambhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G23"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Summerston"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#League -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#League">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Football"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Lightburn -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Lightburn">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mansewood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mansewood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Maryhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Maryhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#MerchantCity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#MerchantCity">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Millerston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Millerston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Milton -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Milton">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G22"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Possilpark"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mosspark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mosspark">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#MountVernon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#MountVernon">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mount_Florida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mount_Florida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirend -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirend">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirhead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirhead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Murder -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Murder">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Homicide"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Music -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Music">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Newlands -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Newlands">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasHappenedAt"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#hasMentioned"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Person"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#isAbout"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Organisation"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Nitshill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Nitshill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#NorthKelvinside -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#NorthKelvinside">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OpeningCeremony -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OpeningCeremony">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Organisation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Organisation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Other -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Other">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherCWG -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherCWG">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWG"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherCrime -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherCrime">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherEntianment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherEntianment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherIncidence -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherIncidence">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Incidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherPolitics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherPolitics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherSocial -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherSocial">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Park -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Park">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Parkhead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Parkhead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partick -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partick">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partickhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partickhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Penilee -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Penilee">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollok -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollok">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollokshaws -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollokshaws">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollokshields -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollokshields">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G41"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shawlands"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Possilpark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Possilpark">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G22"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanhall -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanhall">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanmill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanmill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Queenslie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Queenslie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Racing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Racing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rangers -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rangers">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Club"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Riddrie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Riddrie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Robroyston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Robroyston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rogerfield -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rogerfield">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Royston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Royston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchazie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchazie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rugby -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rugby">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SPFL -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SPFL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#League"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sandyhills -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sandyhills">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScienceTechnology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScienceTechnology">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Scotstoun -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Scotstoun">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G14"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Whiteinch"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishIndependence -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishIndependence">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishReferendum -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishReferendum">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SexualAssault -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SexualAssault">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crime"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shawlands -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shawlands">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G41"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shettleston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shettleston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sighthill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sighthill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Snooker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Snooker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SocialEvent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SocialEvent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SportEvent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SportEvent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springboig -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springboig">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springburn -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springburn">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Squash -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Squash">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockExchange -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockExchange">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockMarket"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockMarket -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#StockMarket">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Strathbungo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Strathbungo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Summerston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Summerston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G23"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Swimming -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Swimming">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#TableTennis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#TableTennis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tennis -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tennis">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Theatre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Theatre">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Enterntainment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tollcross -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tollcross">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Toryglen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Toryglen">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Townhead -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Townhead">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Transport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Transport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#UniversityOfGlasgow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#UniversityOfGlasgow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#WestEnd -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#WestEnd">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Whiteinch -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Whiteinch">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G14"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodlands -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodlands">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodside -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodside">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yoker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yoker">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yorkhill -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yorkhill">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#King&apos;sPark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#King&apos;sPark">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="&owl;Thing">
+        <rdfs:comment rdf:resource="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Glasgow"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Atheletics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Badminton"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bowls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Boxing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cricket"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cycling"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Football"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Golf"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Gymnastics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hockey"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Judo"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherSport"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Racing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rugby"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Snooker"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SportEvent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Squash"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Swimming"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#TableTennis"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tennis"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGAthelatics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBadminton"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBowls"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGBoxing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGCycling"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGDiving"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGGymnastics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGHockey"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGJudo"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGNetball"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGRugbySevens"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGShooting"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSquash"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGSwimming"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTableTennis"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGTriathlon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWeightlifting"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGWrestling"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G11"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G12"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G13"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G14"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G15"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G20"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G21"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G22"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G23"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G3"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G31"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G32"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G33"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G34"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G4"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G40"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G41"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G42"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G43"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G44"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G45"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G46"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G5"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G51"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G52"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G53"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G69"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#G76"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dennistoun"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Haghill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Parkhead"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Maryhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#NorthKelvinside"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchill"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carntyne"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Craigend"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cranhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garthamlock"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Millerston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanmill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Queenslie"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Riddrie"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Robroyston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ruchazie"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Crookston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Darnley"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Nitshill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollok"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mansewood"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Newlands"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Pollokshaws"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Battlefield"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govanhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mount_Florida"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Strathbungo"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Toryglen"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Calton"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowcaddens"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Drygate"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvinbridge"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Townhead"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodlands"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodside"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Economics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Education"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Environment"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Health"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Other"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Politics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScienceTechnology"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Social"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sport"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Transport"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#EPL"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#LALiga"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#SPFL"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Easterhouse"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Provanhall"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Rogerfield"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Location"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Organisation"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Person"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Baillieston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garrowhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirhead"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springhill"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Bridgeton"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Calton"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dalmarnock"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Arden"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carnwadric"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Deaconsbank"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kennishead"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anniesland"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Knightswood"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yoker"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#CWGEvents"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ClosingCeremony"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OpeningCeremony"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Govan"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Ibrox"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kinning_Park"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cardonald"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillington"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Mosspark"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Penilee"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Anderston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Finnieston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Garnethill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Park"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Woodlands"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Yorkhill"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Book"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Film"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Games"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Music"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Theatre"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#BotanicGardens"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cleveden"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Dowanhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hillhead"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Hyndland"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Kelvindale"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#UniversityOfGlasgow"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Balornock"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Barmulloch"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cowlairs"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Royston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sighthill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springburn"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Broomhill"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partick"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Partickhill"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Cathcart"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Croftfoot"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Muirend"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#King&apos;sPark"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Carmyle"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Lightburn"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#MountVernon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Sandyhills"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Shettleston"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Springboig"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#Tollcross"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#OtherPolitics"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishIndependence"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ripul/ontologies/2014/9/GMSNews#ScottishReferendum"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
