@@ -23,13 +23,8 @@ var (
 )
 
 type Topic struct{
-	Name		xml.Name		`xml:"topic"`
-	SubTopics 	[]SubTopic		`xml:"subtopic"`
-}
-
-type SubTopic struct{
 	Name 		string 			`xml:"name,attr"` 
-	SubTopics	[]SubTopic 		`xml:"subtopic"`
+	SubTopics	[]Topic 		`xml:"topic"`
 	Keywords	[]Keyword		`xml:"keyword"`
 }
 
@@ -42,9 +37,7 @@ func readTopic(reader io.Reader) (Topic, error) {
    
     decoder := xml.NewDecoder(reader)
     var topic Topic
-//	results := make([]SubTopic,10)
 	var inElement string
-//	total := 0
     for { 
 	  	t,_ := decoder.Token()
 	   	if t == nil { 
@@ -53,19 +46,10 @@ func readTopic(reader io.Reader) (Topic, error) {
 	   	switch se := t.(type) { 
     	case xml.StartElement:
     		inElement = se.Name.Local
-    		if inElement == "subtopic" {
-    			//will remove this condition in the future
-    			/*var t1 SubTopic 
-    			decoder.DecodeElement(&t1, &se)
-    			fmt.Println(t1.Name)
-    			fmt.Println(t1.SubTopics)
-    			fmt.Println(t1.Keywords)
-    			results[total] = t1
-    			total++*/
-    		}else if inElement =="topic"{
+			if inElement =="topic"{
     			//Praser will finish here in once time.
     			decoder.DecodeElement(&topic, &se)
-//    			fmt.Println(topics)
+//    			fmt.Println(topic)
     		}
     	}
     }
@@ -94,7 +78,30 @@ func readXML()(Topic){
         fmt.Println(err)
         os.Exit(1)
     }
+    
     return topic
+}
+
+func readTopicNameXML(name string)(Topic){
+	  topic := readXML()
+	  topic = topicTraveller(topic,name)
+	  return topic
+}
+
+// Depth first search
+func topicTraveller(topic Topic,name string)(Topic){
+	var  result Topic
+	if topic.Name != name {
+    	for _,t := range topic.SubTopics {
+    		result = topicTraveller(t,name)
+    		if result.Name == name {
+    			break		
+    		}
+    	}
+    }else{
+    	result = topic
+    }
+	return result
 }
 
 func timelineHandler(w http.ResponseWriter, r *http.Request) {
@@ -109,7 +116,7 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 
 	c := session.DB("gmsTry").C("gmsNews")
 	*/
-	
+
 	
 	topic := readXML();
 
