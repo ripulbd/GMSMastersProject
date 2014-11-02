@@ -42,7 +42,6 @@ public class NLPFactory {
 		calTfIdf(collection);
 		for(ExDocument doc : collection.getDocument()) {
 			ArrayList<String> list = findKeywords(doc, NlpConfig.NUMOFKEYWORDS);
-//			System.out.println(doc.getDocID() + " " + list);
 			returnList.add(list);
 		}
 		return returnList;
@@ -75,7 +74,7 @@ public class NLPFactory {
 	public ArrayList<String> findKeywords(ExDocument document, int numWords) {
 		ArrayList<String> returnList = new ArrayList<String>();
 		int size = document.getTfIdf().size();
-		int start = size/2-numWords/2;
+		int start = 0;
 
 		if(numWords > size) return null;
 		while(start+numWords > size && start >= 0) {

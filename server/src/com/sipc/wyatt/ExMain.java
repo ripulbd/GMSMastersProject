@@ -12,18 +12,29 @@ import com.sipc.wyatt.owl.OwlGenerater;
 
 
 public class ExMain {
-	public static void main(String[] args) throws IOException, ClassCastException, ClassNotFoundException {
+	public static void main(String[] args) throws Exception {
+		NLPFactory fa = new NLPFactory();
+		/*
+		String[] text1 = {VarDao.DESCRIPTION, VarDao.TITLE, VarDao.MAINSTORY};
+		ArrayList<String> content = fa.init(text1);
+		int i = 1;
+		for(String str : content) {
+			System.out.println(i+"|||"+str.replaceAll("<[^>]*>", "")+"###");
+			i++;
+		}
+		*/
 		/*
 		 * Modeling
 		 */
-		NLPFactory fa = new NLPFactory();
 		String[] text = {VarDao.DESCRIPTION, VarDao.TITLE};
 		ArrayList<ArrayList<String> > keywordsList = fa.start(text);
+		
 //		for(ArrayList<String> str : keywordsList) {
 //			System.out.println(str);
 //		}
-//		OwlGenerater owl = new OwlGenerater();
-//		owl.ontologyGenerater();
+		OwlGenerater owl = new OwlGenerater();
+		owl.ontologyGenerater();
+		owl.processFile();
 		/*
 		 * Topic Tagging
 		 * @param info Categories
