@@ -8,4 +8,5 @@ public class VarDao {
 	
 	public static final String DESCRIPTION = "description";
 	public static final String TITLE = "title";
+	public static final String MAINSTORY = "mainStory";
 }

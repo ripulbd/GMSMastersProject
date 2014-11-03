@@ -8,7 +8,7 @@ fullPath () {
 }
 
 
-echo "***** Starting Flair *****"
+echo "***** Starting GMS *****"
 #echo $JAVA_HOME
 #echo `which java`
 if [ ! -n "$JAVA_HOME" ]
