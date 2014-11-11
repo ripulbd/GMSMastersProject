@@ -23,30 +23,28 @@
 <script>
 function getSubTopic(name) {
 	$.get("/subtags?tagname="+name, "", function(data, status) {
-		//var ul=document.createElement('ul');
-		var element = document.getElementById("submenu");
-		//check high level
-		var highlevel = document.getElementById(data.Name+"HighLevel");	
-		if( data.SubTopics || highlevel!=null){
-			while (element.firstChild) {
-				element.removeChild(element.firstChild);
-			}
+	//var ul=document.createElement('ul');
+	var element = document.getElementById("submenu");
+	//check high level
+	var highlevel = document.getElementById(data.Name+"HighLevel");	
+		while (element.firstChild) {
+			element.removeChild(element.firstChild);
+		}
 
-			//add previous
-			if(highlevel ==null){
-				var li=document.createElement("li");
-				var a = document.createElement("a");
-				a.setAttribute("href","#");
-				a.onclick= (function(name){ 
-					return  function(){
-						getSubTopic(name);
-					};
-				})(data.ParentName);		
-				li.appendChild(a);
-				var linkText = document.createTextNode("\u23CE");
-				a.appendChild(linkText);
-				element.appendChild(li);
-			}
+		//add previous
+		if(highlevel ==null){
+			var li=document.createElement("li");
+			var a = document.createElement("a");
+			a.setAttribute("href","#");
+			a.onclick= (function(name){ 
+				return  function(){
+					getSubTopic(name);
+				};
+			})(data.ParentName);		
+			li.appendChild(a);
+			var linkText = document.createTextNode("\u23CE");
+			a.appendChild(linkText);
+			element.appendChild(li);
 		}
 		
 		var i;
@@ -73,6 +71,7 @@ function showKeywords(topic){
 	while (element.firstChild) {
 		element.removeChild(element.firstChild);
 	}
+	document.getElementById("keywordname").innerHTML = topic.Name;
 	var i;
 	for ( i in topic.Keywords) {
 		var li=document.createElement("li");
@@ -146,7 +145,11 @@ function showKeywords(topic){
 </header>
         
 <body>
+	<div class="" >
+	<h2 id="keywordname"></h2>
+	
 	<ul id="tagcloud" style="width:50%;">
+	</div>
 	</ul>
 </body>
 </html>
