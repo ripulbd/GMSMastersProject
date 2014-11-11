@@ -13,35 +13,90 @@
 <meta content="text/html; charset=utf-8" http-equiv="content-type">
     
 <link href="/resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="/resources/javascripts/jquery.js" ></script>
     
 <script src="resources/javascripts/modernizr-1.5.min.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="/resources/javascripts/jquery.tx3-tag-cloud.js" ></script>
+
 <script>
-//$(document).on("click", ".subtag", function(){
-function getData(){
-$.get("/subtags?tagname="+name, "", function(data, status) {
+function getSubTopic(name) {
+	$.get("/subtags?tagname="+name, "", function(data, status) {
+		//var ul=document.createElement('ul');
+		var element = document.getElementById("submenu");
+		//check high level
+		var highlevel = document.getElementById(data.Name+"HighLevel");	
+		if( data.SubTopics || highlevel!=null){
+			while (element.firstChild) {
+				element.removeChild(element.firstChild);
+			}
+
+			//add previous
+			if(highlevel ==null){
+				var li=document.createElement("li");
+				var a = document.createElement("a");
+				a.setAttribute("href","#");
+				a.onclick= (function(name){ 
+					return  function(){
+						getSubTopic(name);
+					};
+				})(data.ParentName);		
+				li.appendChild(a);
+				var linkText = document.createTextNode("\u23CE");
+				a.appendChild(linkText);
+				element.appendChild(li);
+			}
+		}
+		
+		var i;
+		for ( i in data.SubTopics) {
+			var li=document.createElement("li");
+			var a = document.createElement("a");
+			a.setAttribute("id",data.SubTopics[i].Name);
+			a.setAttribute("href","#");
+			a.onclick= (function(name){ 
+				return  function(){
+					getSubTopic(name);
+				};
+			})(data.SubTopics[i].Name);
+			li.appendChild(a);
+			var linkText = document.createTextNode(data.SubTopics[i].Name);
+			a.appendChild(linkText);
+			element.appendChild(li);
+		}
+		showKeywords(data);
+	})
+}
+function showKeywords(topic){
+	var element = document.getElementById("tagcloud");
+	while (element.firstChild) {
+		element.removeChild(element.firstChild);
+	}
+	var i;
+	for ( i in topic.Keywords) {
+		var li=document.createElement("li");
+		li.setAttribute("data-weight",topic.Keywords[i].Weight);
+		var a = document.createElement("a");
+		a.setAttribute("id",topic.Keywords[i].Name);
+		a.setAttribute("href","#");
+		li.appendChild(a);
+		var linkText = document.createTextNode(topic.Keywords[i].Name);
+		a.appendChild(linkText);
+		element.appendChild(li);
+	}
+	$("#tagcloud").tx3TagCloud({
+		multiplier: 2
+	});
 }
 
-var nextData = data.Subtopics;
-var size = data.Subtopics.length;
-var ul=document.createElement('ul');
-  for(i = 0; i < size; i++){ 
-    var li=document.createElement('li');
-    ul.appendChild(li);
-	var a = document.createElement('a');
-	li.appendChild(a);
-    var linkText = document.createTextNode(data[i].SubTopics.Name);
-    a.appendChild(linkText);
-    //a.href = "/subtags?tagname=" + data[i].SubTopics.Name;
 
-}
-}
 </script>
 
 </head>
 
 
-<body>
+
     
 
     
@@ -68,25 +123,31 @@ var ul=document.createElement('ul');
 <ul id="menu-bar" style="left: 0px; top: 18px">
  
 {{range $index, $element := .SubTopics}}  
-<li class="active">                       
-  <a href="/">{{printf "%s" $element.Name}}</a>
-<ul>
-{{range $index2, $e1 := $element.SubTopics}}
-<li class="subtag"> <a href="/subtags?tagname={{$e1.Name}}" >{{printf "%s" $e1.Name}}</a></li>
-{{end}}
-</ul> 
+<li class="active" id={{$element.Name}}HighLevel>                       
+   <a id={{$element.Name}} onclick="getSubTopic({{$element.Name}})" href="#" >{{printf "%s" $element.Name}}</a>
 </li>
 {{end}}
-								
+		
+
                                             
 </ul>
-                
-</div>            
-        
-</header>
 
+<ul id="menu-bar" style="left: 0px; top: 18px">
+ 
+	<div id="submenu">
+	</div>
+                                            
+</ul>    
+                
+</div>
+
+       
+
+</header>
         
 <body>
+	<ul id="tagcloud" style="width:50%;">
+	</ul>
 </body>
 </html>
 
