@@ -12,7 +12,7 @@
     
 <meta content="text/html; charset=utf-8" http-equiv="content-type">
     
-<link href="/resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
+<link href="/resources/stylesheets/timeline.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="/resources/javascripts/jquery.js" ></script>
     
@@ -95,10 +95,7 @@ function showKeywords(topic){
 </head>
 
 
-
-    
-
-    
+<body>   
 <div id="main">
         
 <header>
@@ -117,40 +114,37 @@ function showKeywords(topic){
 </div>           
             
                 
-<div id="menu_container">
+<div id="menu_container" style="height: 63px">
                     
 <ul id="menu-bar" style="left: 0px; top: 18px">
  
 {{range $index, $element := .SubTopics}}  
-<li class="active" id={{$element.Name}}HighLevel>                       
+<li id={{$element.Name}}HighLevel>                       
    <a id={{$element.Name}} onclick="getSubTopic({{$element.Name}})" href="#" >{{printf "%s" $element.Name}}</a>
 </li>
 {{end}}
-		
-
                                             
 </ul>
 
-<ul id="menu-bar" style="left: 0px; top: 18px">
+<div id="menu-bar" style="left: 0px; top: 5px">
  
 	<div id="submenu">
 	</div>
                                             
-</ul>    
+</div>    
                 
 </div>
 
-       
-
 </header>
-        
-<body>
-	<div class="" >
-	<h2 id="keywordname"></h2>
-	
+
+</div>
+
+<div id ="tagC">
+  <h2 id="keywordname"></h2>
 	<ul id="tagcloud" style="width:50%;">
-	</div>
 	</ul>
+</div>
+       	
 </body>
 </html>
 
