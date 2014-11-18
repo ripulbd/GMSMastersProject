@@ -1,61 +1,467 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<topic>
-	<subtopic name = "News">
-		<subtopic name = "Economics">
-			<subtopic  name = "Business">
-				<keyword name = "Deals" />                         
-			</subtopic>
-			<subtopic  name = "Finance">
-				<keyword name = "Bank" />             
-				<keyword name = "Trade" />       
-				<keyword name = "Money" />  				
-			</subtopic>
-		</subtopic>
-		<subtopic name = "Educations">
-			<keyword name = "University" />             
-			<keyword name = "School" /> 
-			<keyword name = "Invention" /> 			
-		</subtopic>
-		<subtopic name = "Sports">
-			<keyword name = "player" />             
-			<keyword name = "health" />  
-			<subtopic  name = "Football">
-				<keyword name = "World Cup" />             
-				<keyword name = "Fifa" />             
-			</subtopic>
-			<subtopic  name = "Tennis">
-				<keyword name = "Scores" />             
-				<keyword name = "ATP" />             
-			</subtopic>
-			<subtopic  name = "Boxing">
-				<keyword name = "ThaiBoxing" />             
-				<keyword name = "K1" />             
-			</subtopic>
-			<subtopic  name = "Swimming">
-				<keyword name = "metres" />             
-				<keyword name = "speed" />             
-			</subtopic>
-		</subtopic>
-		<subtopic name = "Socials">
-			<subtopic  name = "Incidence">
-				<keyword name = "Facebook" />             
-				<keyword name = "Twitter" />             
-			</subtopic>
-			<subtopic  name = "Accident">
-				<keyword name = "Flckr" />             
-				<keyword name = "Instragram" />             
-			</subtopic>
-		</subtopic>
-		<subtopic name = "Politics">
-			<subtopic  name = "ScottishIndepencdence">
-				<keyword name = "vote" />             
-				<keyword name = "against" />  
-				<keyword name = "support" /> 				
-			</subtopic>
-			<subtopic  name = "ScottishReferendum">
-				<keyword name = "vote" />             
-				<keyword name = "polls" />             
-			</subtopic>
-		</subtopic>
-	</subtopic>
-</topic>	
+<topic name="News">
+	<topic name="Social">
+		<keyword name="Accident">
+		</keyword>
+		<topic name="SocialEvent">
+			<keyword name="Cultural">
+			</keyword>
+		</topic>
+		<keyword name="OtherSocial">
+		</keyword>
+		<topic name="Incidence">
+			<keyword name="OtherIncidence">
+			</keyword>
+			<topic name="Crime">
+				<keyword name="SexualAssault">
+				</keyword>
+				<keyword name="OtherCrime">
+				</keyword>
+				<keyword name="Burglary">
+				</keyword>
+				<keyword name="Drug">
+				</keyword>
+				<topic name="Homicide">
+					<keyword name="Murder">
+					</keyword>
+					<keyword name="Kidnap">
+					</keyword>
+					<keyword name="Assault">
+					</keyword>
+				</topic>
+			</topic>
+		</topic>
+		<topic name="Entertainment">
+			<keyword name="Music">
+			</keyword>
+			<keyword name="Games">
+			</keyword>
+			<keyword name="OtherEntianment">
+			</keyword>
+			<keyword name="Book">
+			</keyword>
+			<keyword name="Film">
+			</keyword>
+			<keyword name="Theatre">
+			</keyword>
+		</topic>
+	</topic>
+	<keyword name="Other">
+	</keyword>
+	<keyword name="ScienceTechnology">
+	</keyword>
+	<topic name="Economics">
+		<topic name="Business">
+			<keyword name="Employment">
+			</keyword>
+			<keyword name="Investment">
+			</keyword>
+		</topic>
+		<topic name="Finance">
+			<keyword name="Currency">
+			</keyword>
+			<topic name="StockMarket">
+				<keyword name="StockExchange">
+				</keyword>
+			</topic>
+		</topic>
+	</topic>
+	<keyword name="Organisation">
+	</keyword>
+	<keyword name="Health">
+	</keyword>
+	<topic name="Location">
+		<topic name="Glasgow">
+			<topic name="G11">
+				<keyword name="Partick">
+				</keyword>
+				<keyword name="Broomhill">
+				</keyword>
+				<keyword name="Partickhill">
+				</keyword>
+			</topic>
+			<topic name="G13">
+				<keyword name="Yoker">
+				</keyword>
+				<keyword name="Anniesland">
+				</keyword>
+				<keyword name="Knightswood">
+				</keyword>
+			</topic>
+			<topic name="G12">
+				<keyword name="BotanicGardens">
+				</keyword>
+				<keyword name="Hyndland">
+				</keyword>
+				<keyword name="UniversityOfGlasgow">
+				</keyword>
+				<keyword name="Dowanhill">
+				</keyword>
+				<keyword name="Cleveden">
+				</keyword>
+				<keyword name="WestEnd">
+				</keyword>
+				<keyword name="Kelvindale">
+				</keyword>
+				<keyword name="Hillhead">
+				</keyword>
+			</topic>
+			<topic name="G15">
+				<keyword name="Drumchapel">
+				</keyword>
+			</topic>
+			<topic name="G14">
+				<keyword name="Scotstoun">
+				</keyword>
+				<keyword name="Whiteinch">
+				</keyword>
+			</topic>
+			<topic name="G20">
+				<keyword name="Maryhill">
+				</keyword>
+				<keyword name="NorthKelvinside">
+				</keyword>
+				<keyword name="Ruchill">
+				</keyword>
+			</topic>
+			<topic name="G22">
+				<keyword name="Milton">
+				</keyword>
+				<keyword name="Possilpark">
+				</keyword>
+			</topic>
+			<topic name="G21">
+				<keyword name="Balornock">
+				</keyword>
+				<keyword name="Cowlairs">
+				</keyword>
+				<keyword name="Sighthill">
+				</keyword>
+				<keyword name="Barmulloch">
+				</keyword>
+				<keyword name="Springburn">
+				</keyword>
+				<keyword name="Royston">
+				</keyword>
+			</topic>
+			<topic name="G23">
+				<keyword name="Lambhill">
+				</keyword>
+				<keyword name="Summerston">
+				</keyword>
+			</topic>
+			<topic name="G1">
+				<keyword name="MerchantCity">
+				</keyword>
+			</topic>
+			<topic name="G2">
+				<keyword name="BlythswoodHill">
+				</keyword>
+			</topic>
+			<topic name="G3">
+				<keyword name="Park">
+				</keyword>
+				<keyword name="Anderston">
+				</keyword>
+				<keyword name="Finnieston">
+				</keyword>
+				<keyword name="Yorkhill">
+				</keyword>
+				<keyword name="Woodlands">
+				</keyword>
+				<keyword name="Garnethill">
+				</keyword>
+			</topic>
+			<topic name="G4">
+				<keyword name="Drygate">
+				</keyword>
+				<keyword name="Townhead">
+				</keyword>
+				<keyword name="Kelvinbridge">
+				</keyword>
+				<keyword name="Calton">
+				</keyword>
+				<keyword name="Cowcaddens">
+				</keyword>
+				<keyword name="Woodside">
+				</keyword>
+			</topic>
+			<topic name="G5">
+				<keyword name="Gorbals">
+				</keyword>
+			</topic>
+			<topic name="G31">
+				<keyword name="Dennistoun">
+				</keyword>
+				<keyword name="Parkhead">
+				</keyword>
+				<keyword name="Haghill">
+				</keyword>
+			</topic>
+			<topic name="G33">
+				<keyword name="Riddrie">
+				</keyword>
+				<keyword name="Queenslie">
+				</keyword>
+				<keyword name="Millerston">
+				</keyword>
+				<keyword name="Garthamlock">
+				</keyword>
+				<keyword name="Robroyston">
+				</keyword>
+				<keyword name="Carntyne">
+				</keyword>
+				<keyword name="Cranhill">
+				</keyword>
+				<keyword name="Ruchazie">
+				</keyword>
+				<keyword name="Provanmill">
+				</keyword>
+				<keyword name="Craigend">
+				</keyword>
+			</topic>
+			<topic name="G32">
+				<keyword name="MountVernon">
+				</keyword>
+				<keyword name="Shettleston">
+				</keyword>
+				<keyword name="Lightburn">
+				</keyword>
+				<keyword name="Carmyle">
+				</keyword>
+				<keyword name="Sandyhills">
+				</keyword>
+				<keyword name="Springboig">
+				</keyword>
+				<keyword name="Tollcross">
+				</keyword>
+			</topic>
+			<topic name="G34">
+				<keyword name="Easterhouse">
+				</keyword>
+				<keyword name="Rogerfield">
+				</keyword>
+				<keyword name="Provanhall">
+				</keyword>
+			</topic>
+			<topic name="G40">
+				<keyword name="Dalmarnock">
+				</keyword>
+				<keyword name="Bridgeton">
+				</keyword>
+			</topic>
+			<topic name="G42">
+				<keyword name="Battlefield">
+				</keyword>
+				<keyword name="Govanhill">
+				</keyword>
+				<keyword name="Toryglen">
+				</keyword>
+				<keyword name="Mount_Florida">
+				</keyword>
+				<keyword name="Strathbungo">
+				</keyword>
+			</topic>
+			<topic name="G41">
+				<keyword name="Shawlands">
+				</keyword>
+				<keyword name="Pollokshields">
+				</keyword>
+			</topic>
+			<topic name="G44">
+				<keyword name="Cathcart">
+				</keyword>
+				<keyword name="Muirend">
+				</keyword>
+				<keyword name="King&apos;sPark">
+				</keyword>
+				<keyword name="Croftfoot">
+				</keyword>
+			</topic>
+			<topic name="G43">
+				<keyword name="Mansewood">
+				</keyword>
+				<keyword name="Newlands">
+				</keyword>
+				<keyword name="Pollokshaws">
+				</keyword>
+			</topic>
+			<topic name="G46">
+				<keyword name="Kennishead">
+				</keyword>
+				<keyword name="Deaconsbank">
+				</keyword>
+				<keyword name="Carnwadric">
+				</keyword>
+				<keyword name="Arden">
+				</keyword>
+			</topic>
+			<topic name="G45">
+				<keyword name="Castlemilk">
+				</keyword>
+			</topic>
+			<topic name="G51">
+				<keyword name="Ibrox">
+				</keyword>
+				<keyword name="Govan">
+				</keyword>
+				<keyword name="Kinning_Park">
+				</keyword>
+			</topic>
+			<topic name="G53">
+				<keyword name="Crookston">
+				</keyword>
+				<keyword name="Darnley">
+				</keyword>
+				<keyword name="Pollok">
+				</keyword>
+				<keyword name="Nitshill">
+				</keyword>
+			</topic>
+			<topic name="G52">
+				<keyword name="Hillington">
+				</keyword>
+				<keyword name="Cardonald">
+				</keyword>
+				<keyword name="Mosspark">
+				</keyword>
+				<keyword name="Penilee">
+				</keyword>
+			</topic>
+			<topic name="G69">
+				<keyword name="Garrowhill">
+				</keyword>
+				<keyword name="Baillieston">
+				</keyword>
+				<keyword name="Muirhead">
+				</keyword>
+				<keyword name="Springhill">
+				</keyword>
+			</topic>
+			<topic name="G76">
+				<keyword name="Carmunnock">
+				</keyword>
+			</topic>
+		</topic>
+	</topic>
+	<keyword name="Transport">
+	</keyword>
+	<keyword name="Person">
+	</keyword>
+	<topic name="Sport">
+		<keyword name="Badminton">
+		</keyword>
+		<topic name="Racing">
+			<keyword name="F1">
+			</keyword>
+		</topic>
+		<keyword name="Gymnastics">
+		</keyword>
+		<keyword name="Cycling">
+		</keyword>
+		<keyword name="Snooker">
+		</keyword>
+		<keyword name="Swimming">
+		</keyword>
+		<keyword name="Boxing">
+		</keyword>
+		<keyword name="Golf">
+		</keyword>
+		<topic name="Football">
+			<topic name="Club">
+				<keyword name="Celtic">
+				</keyword>
+				<keyword name="Rangers">
+				</keyword>
+			</topic>
+			<topic name="League">
+				<keyword name="EPL">
+				</keyword>
+				<keyword name="LALiga">
+				</keyword>
+				<keyword name="SPFL">
+				</keyword>
+			</topic>
+		</topic>
+		<keyword name="Rugby">
+		</keyword>
+		<keyword name="Cricket">
+		</keyword>
+		<keyword name="Judo">
+		</keyword>
+		<keyword name="Atheletics">
+		</keyword>
+		<keyword name="OtherSport">
+		</keyword>
+		<keyword name="Squash">
+		</keyword>
+		<keyword name="Bowls">
+		</keyword>
+		<topic name="SportEvent">
+			<topic name="CWG">
+				<keyword name="OpeningCeremony">
+				</keyword>
+				<topic name="CWGEvents">
+					<keyword name="CWGCycling">
+					</keyword>
+					<keyword name="CWGTableTennis">
+					</keyword>
+					<keyword name="CWGSquash">
+					</keyword>
+					<keyword name="CWGTriathlon">
+					</keyword>
+					<keyword name="CWGBoxing">
+					</keyword>
+					<keyword name="CWGSwimming">
+					</keyword>
+					<keyword name="CWGHockey">
+					</keyword>
+					<keyword name="CWGDiving">
+					</keyword>
+					<keyword name="CWGJudo">
+					</keyword>
+					<keyword name="CWGWrestling">
+					</keyword>
+					<keyword name="CWGGymnastics">
+					</keyword>
+					<keyword name="CWGBowls">
+					</keyword>
+					<keyword name="CWGAthelatics">
+					</keyword>
+					<keyword name="CWGBadminton">
+					</keyword>
+					<keyword name="CWGNetball">
+					</keyword>
+					<keyword name="CWGWeightlifting">
+					</keyword>
+					<keyword name="CWGShooting">
+					</keyword>
+					<keyword name="CWGRugbySevens">
+					</keyword>
+				</topic>
+				<keyword name="OtherCWG">
+				</keyword>
+				<keyword name="ClosingCeremony">
+				</keyword>
+			</topic>
+		</topic>
+		<keyword name="TableTennis">
+		</keyword>
+		<keyword name="Tennis">
+		</keyword>
+		<keyword name="Hockey">
+		</keyword>
+	</topic>
+	<keyword name="Education">
+	</keyword>
+	<keyword name="Environment">
+	</keyword>
+	<topic name="Politics">
+		<keyword name="ScottishIndependence">
+		</keyword>
+		<keyword name="ScottishReferendum">
+		</keyword>
+		<keyword name="OtherPolitics">
+		</keyword>
+	</topic>
+</topic>
+

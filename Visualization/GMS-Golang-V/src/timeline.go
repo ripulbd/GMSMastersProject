@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"regexp"
 	"html/template"
+	"math/rand"
 //	"unicode/utf8"
 )
 
@@ -27,6 +28,7 @@ type Topic struct{
 	Name 		string 			`xml:"name,attr"` 
 	SubTopics	[]Topic 		`xml:"topic"`
 	Keywords	[]Keyword		`xml:"keyword"`
+	ParentName	string
 }
 
 type Keyword struct{
@@ -95,6 +97,7 @@ func topicTraveller(topic Topic,name string)(Topic){
 	var  result Topic
 	if topic.Name != name {
     	for _,t := range topic.SubTopics {
+    		t.ParentName = topic.Name;
     		result = topicTraveller(t,name)
     		if result.Name == name {
     			break		
@@ -229,7 +232,10 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
 	
 	//find the specific topic in XML which has equal name with tagname
 	topic := readTopicNameXML(tagname);
-	
+	for i := range topic.Keywords {
+		k :=  &topic.Keywords[i]
+    	k.Weight = rand.Int()%40
+    }
 	//send it back to html
 	js, err := json.Marshal(topic)
 	if err != nil {
