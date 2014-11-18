@@ -45,7 +45,7 @@ public class ExMain {
 		ArrayList<ArrayList<String>> neList = new ArrayList<ArrayList<String>>();
 		ExStanfordParser parser = new ExStanfordParser();
 		for(String con : textList) {
-			System.out.println(con);
+//			System.out.println(con);
 			/*
 			 * AlchemyAPI
 			 */

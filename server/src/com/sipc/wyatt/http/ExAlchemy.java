@@ -41,7 +41,7 @@ public class ExAlchemy {
 			while ((line = in.readLine()) != null) {
 				result += line;
 			}
-			System.out.println(result);
+			// System.out.println(result);
 		} catch (Exception e) {
 			System.out.println("Error");
 			e.printStackTrace();
