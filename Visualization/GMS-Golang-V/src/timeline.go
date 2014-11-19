@@ -7,6 +7,7 @@ import (
 	"flag"
 	"encoding/xml"
 	"encoding/json"
+	"encoding/gob"
 	"io"
 	"os"
 	"path/filepath"
@@ -17,11 +18,21 @@ import (
 	"regexp"
 	"html/template"
 	"math/rand"
+	"github.com/gorilla/sessions"
+	"strings"
+	"github.com/gorilla/context"
 //	"unicode/utf8"
+)
+
+const (
+	SESSION_NAME_TOPIC_HANDLER = "TopicHandler"
+	SESSION_KEY_PREVIOUS_TOPIC = "PreviousTopic"
+	SESSION_KEY_TOPIC_PATH = "TopicPath"
 )
 
 var (
 	addr = flag.Bool("addr", false, "find open address and print to final-port.txt")
+	store = sessions.NewCookieStore([]byte("something-very-secret"))
 )
 
 type Topic struct{
@@ -29,11 +40,24 @@ type Topic struct{
 	SubTopics	[]Topic 		`xml:"topic"`
 	Keywords	[]Keyword		`xml:"keyword"`
 	ParentName	string
+	Path		string			// Path is not include themself
+	// Path format is Parent1Name,Parent2Name,...,ParentName
 }
 
 type Keyword struct{
 	Name 		string 			`xml:"name,attr"`
 	Weight		int 
+}
+
+func init() {
+    gob.Register(&Topic{})
+    gob.Register(&Keyword{})
+    
+    store.Options = &sessions.Options{
+	    Path:     "/",
+	    MaxAge:   86400,
+	    HttpOnly: true,
+	}
 }
 
 
@@ -86,20 +110,30 @@ func readXML()(Topic){
     return topic
 }
 
-func readTopicNameXML(name string)(Topic){
+func readTopicNameXML(name string, path string)(Topic){
 	  topic := readXML()
-	  topic = topicTraveller(topic,name)
+	  topic = topicTraveller(topic,name,path)
 	  return topic
 }
 
 // Depth first search
-func topicTraveller(topic Topic,name string)(Topic){
+/*
+	If path is empty String, assume that user clicked on High Level topic and path was unknown.
+*/
+func topicTraveller(topic Topic,name string, path string)(Topic){
 	var  result Topic
 	if topic.Name != name {
-    	for _,t := range topic.SubTopics {
-    		t.ParentName = topic.Name;
-    		result = topicTraveller(t,name)
-    		if result.Name == name {
+		for i := range topic.SubTopics {
+			t :=  &topic.SubTopics[i]
+    		t.ParentName = topic.Name
+    		// set path
+    		if topic.Path != "" {
+    			t.Path =  topic.Path + "," + topic.Name	
+    		}else {
+    			t.Path =  topic.Name
+    		}
+    		result = topicTraveller(*t,name,path)
+    		if result.Name == name && (path == "" || result.Path == path) {
     			break		
     		}
     	}
@@ -162,7 +196,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	keyword := r.URL.Query()["keyword"][0]
 	fmt.Println(keyword)
 	
-	topic := readTopicNameXML("Business")
+	topic := readTopicNameXML("Business","")
 	
 	js, err := json.Marshal(topic)
 	if err != nil {
@@ -219,10 +253,33 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 }
 
 func createSubtopicTags(w http.ResponseWriter, r *http.Request){
+	
+	var topic Topic
+	var path string = ""
 
     //take the tagname from the url	and print it
 	tagname := r.URL.Query()["tagname"][0];
 	fmt.Printf("Query: %s\n", tagname)
+	
+	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
+	
+	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
+		if previous_topic.ParentName == tagname {
+			//previous button was selected
+			path = strings.Split(previous_topic.Path,","+tagname)[0]
+		}else{
+			for _,t := range previous_topic.SubTopics {	
+		    	if t.Name == tagname {	
+		    		// sub topic was selected
+		    		t.ParentName = previous_topic.Name;
+		    		t.Path = previous_topic.Path + "," + previous_topic.Name
+		    		topic = t;
+		    		break	
+		   	    }
+		 	}
+		}
+		
+	}
 	
 	/*session, err := mgo.Dial("localhost")
 	if err != nil {
@@ -230,12 +287,22 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
 	}
 	defer session.Close()*/
 	
-	//find the specific topic in XML which has equal name with tagname
-	topic := readTopicNameXML(tagname);
+	// new High level topic or previous button was selected
+	if topic.Name == "" {
+		//find the specific topic in XML which has equal name with tagname
+		topic = readTopicNameXML(tagname,path);	
+	}
+	
+	
+	session.Values[SESSION_KEY_PREVIOUS_TOPIC] = &topic
+	session.Save(r,w)
+	
+	  
 	for i := range topic.Keywords {
 		k :=  &topic.Keywords[i]
-    	k.Weight = rand.Int()%40
-    }
+	    k.Weight = rand.Int()%40
+	}
+	
 	//send it back to html
 	js, err := json.Marshal(topic)
 	if err != nil {
@@ -272,7 +339,7 @@ func main() {
 		return
 	}
 
-	http.ListenAndServe(":8090", nil)
+	http.ListenAndServe(":8090",  context.ClearHandler(http.DefaultServeMux))
 	
 }
 
