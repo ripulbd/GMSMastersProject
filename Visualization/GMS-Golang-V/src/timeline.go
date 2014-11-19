@@ -162,25 +162,6 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "timeline", &topic)
 }
 
-func tagCloudHandler(w http.ResponseWriter, r *http.Request) {
-	/*session, err := mgo.Dial("localhost")
-	if err != nil {
-		panic(err)
-	}
-	defer session.Close()
-
-	// Optional. Switch the session to a monotonic behavior.
-	session.SetMode(mgo.Monotonic, true)
-
-	c := session.DB("gmsTry").C("gmsNews")
-	*/
-	var topic Topic
-	topic.Keywords = []Keyword{{"ManU",10},{"Liverpool",5},{"Arsenal",15},{"Chelsea",8},{"Mango",2},{"Teams",7},{"Newcastle",5},{"Ruby",11},{"Dreams",10},{"FFF",17}}
-	fmt.Println(topic)
-
-	renderTemplate(w, "tagcloudTest", &topic)
-}
-
 func showListHandler(w http.ResponseWriter, r *http.Request) {
 	/*session, err := mgo.Dial("localhost")
 	if err != nil {
@@ -216,7 +197,7 @@ var funcMap = template.FuncMap{
         },
 }
 
-var templates = template.Must(template.New("test").Funcs(funcMap).ParseFiles("timeline.html","tagcloudTest.html"))
+var templates = template.Must(template.New("test").Funcs(funcMap).ParseFiles("timeline.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Topic) {
 	// Execute the template for each recipient.
@@ -319,7 +300,6 @@ func main() {
 	flag.Parse()
 	http.HandleFunc("/", makeHandler(timelineHandler))
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
-	http.HandleFunc("/tagcloud/", makeHandler(tagCloudHandler))
 	http.HandleFunc("/showlist", makeHandler(showListHandler))
 	http.HandleFunc("/subtags", makeHandler(createSubtopicTags))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
