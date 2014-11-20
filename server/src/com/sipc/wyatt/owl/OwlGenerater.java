@@ -47,13 +47,15 @@ public class OwlGenerater {
 			for(int i = 3; i < info.length; i += 2) {
 				Double num = Double.parseDouble(info[i]);
 				if(num.compareTo(0.3) > 0) {
+//				System.out.println(info[i]);		// Relevence
 					int docID = Integer.parseInt(info[i-1]);
 					while((line2 = reader2.readLine()) != null) {
 						ArrayList<String> keywordsList = new ArrayList<String>();
-						if(line2.split("\t")[0].equals(String.format("%s", docID))) continue;
+						if(!line2.split("\t")[0].equals(String.format("%s", docID))) continue;
 						for(String key : line2.split("\t")[2].split(" ")) {
 							keywordsList.add(key);
 						}
+//						System.out.println(keywordsList);
 						find(keywordsList);
 					}
 				}
@@ -65,7 +67,7 @@ public class OwlGenerater {
 				while((tmp = reader3.readLine()) != null) {
 					con += tmp;
 				}
-				System.out.println("useAlchemyAPI");
+				// System.out.println("useAlchemyAPI");
 				String jsonContent = ExAlchemy.getInfo("text/TextGetRankedConcepts", con);
 				String param = "text";
 				ArrayList<String> info2 = ExAlchemy.getJsonDetails(jsonContent, param);
