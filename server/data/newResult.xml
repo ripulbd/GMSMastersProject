@@ -1,0 +1,185 @@
+<topic name="News">
+	<keyword name="Other">
+	</keyword>
+	<topic name="Economics">
+		<topic name="Business">
+			<keyword name="Employment">
+			</keyword>
+			<keyword name="Investment">
+			</keyword>
+		</topic>
+		<topic name="Finance">
+			<keyword name="Currency">
+			</keyword>
+			<topic name="StockMarket">
+				<keyword name="StockExchange">
+				</keyword>
+			</topic>
+		</topic>
+	</topic>
+	<keyword name="Health">
+	</keyword>
+	<topic name="Society">
+		<topic name="Entertainment">
+			<keyword name="Music">
+			</keyword>
+			<keyword name="Games">
+			</keyword>
+			<keyword name="OtherEntianment">
+			</keyword>
+			<keyword name="Book">
+			</keyword>
+			<keyword name="Film">
+			</keyword>
+			<keyword name="Theatre">
+			</keyword>
+		</topic>
+		<keyword name="Accident">
+		</keyword>
+		<topic name="SocialEvent">
+			<keyword name="Cultural">
+			</keyword>
+		</topic>
+		<keyword name="OtherSocial">
+		</keyword>
+		<topic name="Incidence">
+			<keyword name="OtherIncidence">
+			</keyword>
+			<topic name="Crime">
+				<keyword name="SexualAssault">
+				</keyword>
+				<keyword name="OtherCrime">
+				</keyword>
+				<keyword name="Burglary">
+				</keyword>
+				<keyword name="Drug">
+				</keyword>
+				<topic name="Homicide">
+					<keyword name="Murder">
+					</keyword>
+					<keyword name="Kidnap">
+					</keyword>
+					<keyword name="Assault">
+					</keyword>
+				</topic>
+			</topic>
+		</topic>
+	</topic>
+	<keyword name="Transport">
+	</keyword>
+	<keyword name="Person">
+	</keyword>
+	<topic name="Sport">
+		<keyword name="Badminton">
+		</keyword>
+		<topic name="Racing">
+			<keyword name="F1">
+			</keyword>
+		</topic>
+		<keyword name="Gymnastics">
+		</keyword>
+		<keyword name="Cycling">
+		</keyword>
+		<keyword name="Snooker">
+		</keyword>
+		<keyword name="Swimming">
+		</keyword>
+		<keyword name="Boxing">
+		</keyword>
+		<keyword name="Golf">
+		</keyword>
+		<topic name="Football">
+			<topic name="Club">
+				<keyword name="Celtic">
+				</keyword>
+				<keyword name="Rangers">
+				</keyword>
+			</topic>
+			<topic name="League">
+				<keyword name="EPL">
+				</keyword>
+				<keyword name="LALiga">
+				</keyword>
+				<keyword name="SPFL">
+				</keyword>
+			</topic>
+		</topic>
+		<keyword name="Rugby">
+		</keyword>
+		<keyword name="Cricket">
+		</keyword>
+		<keyword name="Judo">
+		</keyword>
+		<keyword name="Atheletics">
+		</keyword>
+		<keyword name="OtherSport">
+		</keyword>
+		<keyword name="Squash">
+		</keyword>
+		<keyword name="Bowls">
+		</keyword>
+		<topic name="SportEvent">
+			<topic name="CWG">
+				<keyword name="OpeningCeremony">
+				</keyword>
+				<topic name="CWGEvents">
+					<keyword name="CWGCycling">
+					</keyword>
+					<keyword name="CWGTableTennis">
+					</keyword>
+					<keyword name="CWGSquash">
+					</keyword>
+					<keyword name="CWGTriathlon">
+					</keyword>
+					<keyword name="CWGBoxing">
+					</keyword>
+					<keyword name="CWGSwimming">
+					</keyword>
+					<keyword name="CWGHockey">
+					</keyword>
+					<keyword name="CWGDiving">
+					</keyword>
+					<keyword name="CWGJudo">
+					</keyword>
+					<keyword name="CWGWrestling">
+					</keyword>
+					<keyword name="CWGGymnastics">
+					</keyword>
+					<keyword name="CWGBowls">
+					</keyword>
+					<keyword name="CWGAthelatics">
+					</keyword>
+					<keyword name="CWGBadminton">
+					</keyword>
+					<keyword name="CWGNetball">
+					</keyword>
+					<keyword name="CWGWeightlifting">
+					</keyword>
+					<keyword name="CWGShooting">
+					</keyword>
+					<keyword name="CWGRugbySevens">
+					</keyword>
+				</topic>
+				<keyword name="OtherCWG">
+				</keyword>
+				<keyword name="ClosingCeremony">
+				</keyword>
+			</topic>
+		</topic>
+		<keyword name="TableTennis">
+		</keyword>
+		<keyword name="Tennis">
+		</keyword>
+		<keyword name="Hockey">
+		</keyword>
+	</topic>
+	<keyword name="Education">
+	</keyword>
+	<keyword name="Technology">
+	</keyword>
+	<keyword name="Environment">
+	</keyword>
+	<keyword name="Science">
+	</keyword>
+</topic>
+
