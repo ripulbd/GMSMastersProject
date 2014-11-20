@@ -381,9 +381,6 @@ footer a:hover {
   height: 1%;
 }
 
-h2 #keywordname {
-	
-}
 
 ul.tx3-tag-cloud
 {
@@ -419,4 +416,24 @@ ul.tx3-tag-cloud li a:hover
     transition: color 250ms linear;
 }
 
-  
+#tagC h2 {
+   text-transform:uppercase;
+   border-bottom : 2px solid #2F4F4F;
+   border-top : 2px solid #2F4F4F;
+   border-left: 2px solid #2F4F4F;
+   border-right : 2px solid #2F4F4F;
+   text-align: center;
+}
+
+.lowlevellist {
+  width : 100 px;
+}
+
+.lowlevellist h2 {
+   text-transform: uppercase;
+   border-bottom : 2px solid #2F4F4F;
+   border-top : 2px solid #2F4F4F;
+   border-left: 2px solid #2F4F4F;
+   border-right : 2px solid #2F4F4F;
+   text-align:center;
+}
