@@ -28,6 +28,10 @@ const (
 	SESSION_NAME_TOPIC_HANDLER = "TopicHandler"
 	SESSION_KEY_PREVIOUS_TOPIC = "PreviousTopic"
 	SESSION_KEY_TOPIC_PATH = "TopicPath"
+	PATH_SEPARATER = "/";
+	DB_NAME = "gmsTry";
+	DB_COLLECTION_NEWS = "gmsNews";
+	DB_COLLECTION_KEYWORD = "gmsKeyword";
 )
 
 var (
@@ -128,7 +132,7 @@ func topicTraveller(topic Topic,name string, path string)(Topic){
     		t.ParentName = topic.Name
     		// set path
     		if topic.Path != "" {
-    			t.Path =  topic.Path + "," + topic.Name	
+    			t.Path =  topic.Path + PATH_SEPARATER + topic.Name	
     		}else {
     			t.Path =  topic.Name
     		}
@@ -163,6 +167,27 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func showListHandler(w http.ResponseWriter, r *http.Request) {
+	
+	var keyword Keyword
+	var path string
+	keywordName := r.URL.Query()["keyword"][0]
+	
+	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
+	
+	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
+		for _,k := range previous_topic.Keywords {	
+		    if k.Name == keywordName {	
+		    	keyword = k
+		    	path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
+		    	break
+	    	}
+		}
+	}else{
+		// error
+		return
+	}
+	
+	
 	/*session, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
@@ -174,8 +199,8 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 
 	c := session.DB("gmsTry").C("gmsNews")
 	*/
-	keyword := r.URL.Query()["keyword"][0]
-	fmt.Println(keyword)
+	
+	fmt.Println(keyword,path)
 	
 	topic := readTopicNameXML("Business","")
 	
@@ -247,13 +272,13 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
 	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
 		if previous_topic.ParentName == tagname {
 			//previous button was selected
-			path = strings.Split(previous_topic.Path,","+tagname)[0]
+			path = strings.Split(previous_topic.Path,PATH_SEPARATER+tagname)[0]
 		}else{
 			for _,t := range previous_topic.SubTopics {	
 		    	if t.Name == tagname {	
 		    		// sub topic was selected
 		    		t.ParentName = previous_topic.Name;
-		    		t.Path = previous_topic.Path + "," + previous_topic.Name
+		    		t.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
 		    		topic = t;
 		    		break	
 		   	    }
@@ -274,7 +299,7 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
 		topic = readTopicNameXML(tagname,path);	
 	}
 	
-	
+	fmt.Println(topic);
 	session.Values[SESSION_KEY_PREVIOUS_TOPIC] = &topic
 	session.Save(r,w)
 	
