@@ -1,9 +1,9 @@
-package src
+package main
 
 import (
 	"fmt"
-    //"gopkg.in/mgo.v2"
-    //"gopkg.in/mgo.v2/bson"
+    "gopkg.in/mgo.v2"
+    "gopkg.in/mgo.v2/bson"
 	"flag"
 	"encoding/xml"
 	"encoding/json"
@@ -30,9 +30,10 @@ const (
 	SESSION_KEY_PREVIOUS_TOPIC = "PreviousTopic"
 	SESSION_KEY_TOPIC_PATH = "TopicPath"
 	PATH_SEPARATER = "/";
-	DB_NAME = "gmsTry";
-	DB_COLLECTION_NEWS = "gmsNews";
-	DB_COLLECTION_KEYWORD = "gmsKeyword";
+	DB_NAME = "demo";
+	DB_COLLECTION_RECORD = "News";
+	DB_COLLECTION_NEWS = "modeling";
+	DB_COLLECTION_KEYWORD = "keywords";
 	COSINE_THRESHOLD = 0.7;
 )
 
@@ -47,25 +48,43 @@ type Topic struct{
 	Keywords	[]Keyword		`xml:"keyword"`
 	ParentName	string
 	Path		string			// Path is not include themself
-	// Path format is Parent1Name,Parent2Name,...,ParentName
+	/* 
+	 * Path format is Parent1Name/Parent2Name/.../ParentName
+	 * '/' is based on PATH_SEPARATER in constant
+	 */
 }
 
 type Keyword struct{
-	Name 		string 			`xml:"name,attr"`
+	ID			string			`bson:"id"`
+	Name 		string 			`xml:"name,attr" bson:"keyword"`
+	Path		string			`bson:"path"`
 	Weight		int 
-	Path		string
+}
+
+type Image struct {
+	Name    	string 			`bson:"name"`
+	Caption 	string			`bson:"caption"`
 }
 
 type News struct{
-	Headline	string
-	NewsID		string
-	Keywords	[]Keyword
+	NewsID		string			`bson:"newsId"`
+	Title       string    		`bson:"title"`
+	Description string    		`bson:"description"`
+	TimeStamp   string    		`bson:"timeStamp"`
+	Category    string    		`bson:"category"`
+	Url         string    		`bson:"url"`
+	Source      string    		`bson:"source"`
+	MainStory   string   		`bson:"mainStory"`
+	Images      []Image  		`bson:"images"`
+	KeywordIDs	[]string		`bson:"keywords"`
+	//Keywords	[]Keyword		
 }
 
+
 type NewsGroup struct{
-	News		[]News
+	Headline	string
 	Summary		string
-	Title		string
+	News		[]News
 }
 
 type ListNewsGroup struct{
@@ -85,7 +104,7 @@ func init() {
 }
 
 // generate value of individual vector from the template
-func generateVectorValue(template,keywords []Keyword) ([]int){
+func generateVectorValue(template,keywords []string) ([]int){
 	var vector = make([]int,len(template))
 	
 	for _,keyword := range keywords {	
@@ -101,10 +120,10 @@ func generateVectorValue(template,keywords []Keyword) ([]int){
 
 func generateNewsGroup(allNews []News) ([]NewsGroup){
 	// find vector template from intersection of every keyword
-	var vectorTemplate []Keyword
+	var vectorTemplate []string
 	var contains bool
 	for _,news := range allNews {	
-		for _,keyword := range news.Keywords {	
+		for _,keyword := range news.KeywordIDs {	
 			contains = false
 			for _,v := range vectorTemplate {	
 				if v == keyword {
@@ -124,7 +143,7 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	
 	// find vector value
 	for i := range allNews {	
-		allVectorValue[i] = generateVectorValue(vectorTemplate,allNews[i].Keywords)
+		allVectorValue[i] = generateVectorValue(vectorTemplate,allNews[i].KeywordIDs)
 	}
 	
 	// calculate consine similarity
@@ -158,14 +177,14 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 			}
 		}
 	}
-	
+	fmt.Println(group)
 	// find number of group
 	var number []int
 	var duplicate bool
 	for i := 0; i<len(group) ; i++ {	
 		duplicate = false
-		for j := 0; i<len(number) ; j++ {	
-			if group[i] == group[j] {
+		for j := 0; j<len(number) ; j++ {
+			if group[i] == number[j] {
 				duplicate = true
 				break
 			}
@@ -175,7 +194,7 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 		}
 		number = append(number,group[i])
 	}
-	
+
 	// create group result
 	var result []NewsGroup = make([]NewsGroup,len(number))
 	for i := 0; i<len(number) ; i++ {	
@@ -185,7 +204,7 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 				news = append(news,allNews[j])
 			}
 		}
-		result[i] = NewsGroup{news,"",""}	
+		result[i] = NewsGroup{"","",news}	
 	} 
 	
 	return result
@@ -318,7 +337,6 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	var keyword Keyword
-	var path string
 	keywordName := r.URL.Query()["keyword"][0]
 	
 	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
@@ -327,7 +345,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 		for _,k := range previous_topic.Keywords {	
 		    if k.Name == keywordName {	
 		    	keyword = k
-		    	path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
+		    	keyword.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
 		    	break
 	    	}
 		}
@@ -336,24 +354,24 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	
-	/*session, err := mgo.Dial("localhost")
+	dbSession, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
 	}
-	defer session.Close()
+	defer dbSession.Close()
 
 	// Optional. Switch the session to a monotonic behavior.
-	session.SetMode(mgo.Monotonic, true)
+	dbSession.SetMode(mgo.Monotonic, true)
 
-	c := session.DB("gmsTry").C("gmsNews")
-	*/
+	collectionKeywords := dbSession.DB(DB_NAME).C(DB_COLLECTION_KEYWORD)
+	collectionKeywords.Find(bson.M{"keyword":keyword.Name,"path":keyword.Path}).One(&keyword)
 	
-	fmt.Println(keyword,path)
+	var news []News
+	collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
+	collectionNews.Find(bson.M{"keywords":keyword.ID}).All(&news)
+	newsGroup := generateNewsGroup(news)
 	
-	topic := readTopicNameXML("Business","")
-	
-	js, err := json.Marshal(topic)
+	js, err := json.Marshal(newsGroup)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -436,12 +454,6 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
 		
 	}
 	
-	/*session, err := mgo.Dial("localhost")
-	if err != nil {
-		panic(err)
-	}
-	defer session.Close()*/
-	
 	// new High level topic or previous button was selected
 	if topic.Name == "" {
 		//find the specific topic in XML which has equal name with tagname
@@ -469,7 +481,6 @@ func createSubtopicTags(w http.ResponseWriter, r *http.Request){
   	w.Write(js)
 }
 
-
 func main() {
 	flag.Parse()
 	http.HandleFunc("/", makeHandler(timelineHandler))
@@ -477,7 +488,6 @@ func main() {
 	http.HandleFunc("/showlist", makeHandler(showListHandler))
 	http.HandleFunc("/subtags", makeHandler(createSubtopicTags))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
-	
     
     if *addr {
 		l, err := net.Listen("tcp", "127.0.0.1:0")
@@ -494,6 +504,5 @@ func main() {
 	}
 
 	http.ListenAndServe(":8090",  context.ClearHandler(http.DefaultServeMux))
-	
 }
 
