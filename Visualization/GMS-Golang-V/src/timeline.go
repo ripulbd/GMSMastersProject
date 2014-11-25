@@ -53,6 +53,22 @@ type Keyword struct{
 	Weight		int 
 }
 
+type News struct{
+	Headline	string
+	NewsID		string
+}
+
+type NewsGroup struct{
+	News		[]News
+	Summary		string
+	Title		string
+}
+
+type ListNewsGroup struct{
+	NewGroups	[]NewsGroup
+	Keyword		Keyword
+}
+
 func init() {
     gob.Register(&Topic{})
     gob.Register(&Keyword{})
