@@ -334,6 +334,80 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "timeline", &topic)
 }
 
+func topicHandler(w http.ResponseWriter, r *http.Request){
+	
+	var topic Topic
+	var path string = ""
+
+    //take the tagname from the url	and print it
+	tagname := r.URL.Query()["tagname"][0];
+	fmt.Printf("Query: %s\n", tagname)
+	
+	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
+	
+	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
+		if previous_topic.ParentName == tagname {
+			//previous button was selected
+			path = strings.Split(previous_topic.Path,PATH_SEPARATER+tagname)[0]
+		}else{
+			for _,t := range previous_topic.SubTopics {	
+		    	if t.Name == tagname {	
+		    		// sub topic was selected
+		    		t.ParentName = previous_topic.Name;
+		    		t.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
+		    		topic = t;
+		    		break	
+		   	    }
+		 	}
+		}
+		
+	}
+	
+	// new High level topic or previous button was selected
+	if topic.Name == "" {
+		//find the specific topic in XML which has equal name with tagname
+		topic = readTopicNameXML(tagname,path);	
+	}
+	
+	fmt.Println(topic);
+	session.Values[SESSION_KEY_PREVIOUS_TOPIC] = &topic
+	session.Save(r,w)
+	
+	/*dbSession, err := mgo.Dial("localhost")
+	if err != nil {
+		panic(err)
+	}
+	defer dbSession.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	dbSession.SetMode(mgo.Monotonic, true)
+
+	collectionKeywords := dbSession.DB(DB_NAME).C(DB_COLLECTION_KEYWORD)
+	*/
+	  
+	for i := range topic.Keywords {
+		/*keyword := topic.Keywords[i]
+		// update keyword id
+		collectionKeywords.Find(bson.M{"keyword":keyword.Name,"path":keyword.Path}).One(&keyword)
+		var news []News
+		collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
+		collectionNews.Find(bson.M{"keywords":keyword.ID}).All(&news)*/
+		k :=  &topic.Keywords[i]
+		//k.Weight = len(news)
+	    k.Weight = rand.Int()%40
+	}
+	
+	//send it back to html
+	js, err := json.Marshal(topic)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+		
+	w.Header().Set("Content-Type", "application/json")
+  	w.Write(js)
+}
+
 func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	var keyword Keyword
@@ -425,68 +499,12 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	}
 }
 
-func createSubtopicTags(w http.ResponseWriter, r *http.Request){
-	
-	var topic Topic
-	var path string = ""
-
-    //take the tagname from the url	and print it
-	tagname := r.URL.Query()["tagname"][0];
-	fmt.Printf("Query: %s\n", tagname)
-	
-	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
-	
-	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
-		if previous_topic.ParentName == tagname {
-			//previous button was selected
-			path = strings.Split(previous_topic.Path,PATH_SEPARATER+tagname)[0]
-		}else{
-			for _,t := range previous_topic.SubTopics {	
-		    	if t.Name == tagname {	
-		    		// sub topic was selected
-		    		t.ParentName = previous_topic.Name;
-		    		t.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
-		    		topic = t;
-		    		break	
-		   	    }
-		 	}
-		}
-		
-	}
-	
-	// new High level topic or previous button was selected
-	if topic.Name == "" {
-		//find the specific topic in XML which has equal name with tagname
-		topic = readTopicNameXML(tagname,path);	
-	}
-	
-	fmt.Println(topic);
-	session.Values[SESSION_KEY_PREVIOUS_TOPIC] = &topic
-	session.Save(r,w)
-	
-	  
-	for i := range topic.Keywords {
-		k :=  &topic.Keywords[i]
-	    k.Weight = rand.Int()%40
-	}
-	
-	//send it back to html
-	js, err := json.Marshal(topic)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-		
-	w.Header().Set("Content-Type", "application/json")
-  	w.Write(js)
-}
-
 func main() {
 	flag.Parse()
 	http.HandleFunc("/", makeHandler(timelineHandler))
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
 	http.HandleFunc("/showlist", makeHandler(showListHandler))
-	http.HandleFunc("/subtags", makeHandler(createSubtopicTags))
+	http.HandleFunc("/subtags", makeHandler(topicHandler))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
     
     if *addr {
