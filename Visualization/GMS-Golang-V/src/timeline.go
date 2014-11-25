@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"fmt"
@@ -21,6 +21,7 @@ import (
 	"github.com/gorilla/sessions"
 	"strings"
 	"github.com/gorilla/context"
+	"math"
 //	"unicode/utf8"
 )
 
@@ -32,6 +33,7 @@ const (
 	DB_NAME = "gmsTry";
 	DB_COLLECTION_NEWS = "gmsNews";
 	DB_COLLECTION_KEYWORD = "gmsKeyword";
+	COSINE_THRESHOLD = 0.7;
 )
 
 var (
@@ -51,6 +53,24 @@ type Topic struct{
 type Keyword struct{
 	Name 		string 			`xml:"name,attr"`
 	Weight		int 
+	Path		string
+}
+
+type News struct{
+	Headline	string
+	NewsID		string
+	Keywords	[]Keyword
+}
+
+type NewsGroup struct{
+	News		[]News
+	Summary		string
+	Title		string
+}
+
+type ListNewsGroup struct{
+	NewGroups	[]NewsGroup
+	Keyword		Keyword
 }
 
 func init() {
@@ -62,6 +82,135 @@ func init() {
 	    MaxAge:   86400,
 	    HttpOnly: true,
 	}
+}
+
+// generate value of individual vector from the template
+func generateVectorValue(template,keywords []Keyword) ([]int){
+	var vector = make([]int,len(template))
+	
+	for _,keyword := range keywords {	
+		for i := range template {	
+			if template[i] == keyword {
+				vector[i]++
+				break
+			}
+		}
+	}
+	return vector
+}
+
+func generateNewsGroup(allNews []News) ([]NewsGroup){
+	// find vector template from intersection of every keyword
+	var vectorTemplate []Keyword
+	var contains bool
+	for _,news := range allNews {	
+		for _,keyword := range news.Keywords {	
+			contains = false
+			for _,v := range vectorTemplate {	
+				if v == keyword {
+					contains = true
+					break
+				}
+			}
+			if contains {
+				// already add keyword into vector
+				continue
+			}
+			vectorTemplate = append(vectorTemplate,keyword)
+		}
+	}
+	
+	var allVectorValue [][]int = make([][]int,len(allNews))
+	
+	// find vector value
+	for i := range allNews {	
+		allVectorValue[i] = generateVectorValue(vectorTemplate,allNews[i].Keywords)
+	}
+	
+	// calculate consine similarity
+	var calculateResult [][]float64 = make([][]float64,len(allNews))
+	for i := range calculateResult {
+		calculateResult[i] = make([]float64,len(allNews))
+	}
+	for i := 0; i<len(allVectorValue) ; i++ {	
+		for j := i+1; j<len(allVectorValue) ; j++ {	
+			calculateResult[i][j] = calculateCosineSimilarity(allVectorValue[i],allVectorValue[j])
+		}
+	}
+	
+	// group[i] = j <-> news j is in group i
+	var group []int = make([]int,len(allNews))
+	// set default value, news i is in group i
+	for i := 0; i<len(group) ; i++ {	
+		group[i] = i;
+	}
+	for i := 0; i<len(allVectorValue) ; i++ {	
+		if group[i] != i {
+			/* 
+			 * if news i already move a group, it assume that pair of similar which news i 
+			 * should be in the same group with news i
+			*/
+			continue
+		}
+		for j := i+1; j<len(allVectorValue) ; j++ {	
+			if calculateResult[i][j] > COSINE_THRESHOLD {
+				group[j] = i
+			}
+		}
+	}
+	
+	// find number of group
+	var number []int
+	var duplicate bool
+	for i := 0; i<len(group) ; i++ {	
+		duplicate = false
+		for j := 0; i<len(number) ; j++ {	
+			if group[i] == group[j] {
+				duplicate = true
+				break
+			}
+		}
+		if duplicate {
+			continue
+		}
+		number = append(number,group[i])
+	}
+	
+	// create group result
+	var result []NewsGroup = make([]NewsGroup,len(number))
+	for i := 0; i<len(number) ; i++ {	
+		var news []News
+		for j := 0; j<len(group) ; j++ {
+			if group[j] == i {
+				news = append(news,allNews[j])
+			}
+		}
+		result[i] = NewsGroup{news,"",""}	
+	} 
+	
+	return result
+}
+
+func calculateCosineSimilarity(vector1,vector2 []int)(float64){
+	// find dot product between vector 1 and vector 2
+	var dotProduct int = 0
+	for i:=0; i< len(vector1); i++ {
+		dotProduct += vector1[i]*vector2[i]
+	}
+	
+	// find product of magnitudes between vector 1 and vector 2
+	var sumSquare1, sumSquare2, productMagnitudes float64 
+	sumSquare1 = 0
+	for i:=0; i< len(vector1); i++ {
+		sumSquare1 += float64(vector1[i]*vector1[i])
+	}
+	sumSquare2 = 0
+	for i:=0; i< len(vector2); i++ {
+		sumSquare2 += float64(vector2[i]*vector2[i])
+	}
+	productMagnitudes = math.Sqrt(sumSquare1*sumSquare2)
+	
+	return float64(dotProduct) / productMagnitudes
 }
 
 
