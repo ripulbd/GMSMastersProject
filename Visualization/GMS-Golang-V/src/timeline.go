@@ -35,6 +35,7 @@ const (
 	DB_COLLECTION_NEWS = "modeling";
 	DB_COLLECTION_KEYWORD = "keywords";
 	COSINE_THRESHOLD = 0.7;
+	FILE_XML_NAME = "xmlDemo.xml";
 )
 
 var (
@@ -258,7 +259,7 @@ func readTopic(reader io.Reader) (Topic, error) {
 }
 
 func readXML()(Topic){
-	xmlPath, err := filepath.Abs("xmlDemo.xml")
+	xmlPath, err := filepath.Abs(FILE_XML_NAME)
     if err != nil {
         fmt.Println(err)
         os.Exit(1)

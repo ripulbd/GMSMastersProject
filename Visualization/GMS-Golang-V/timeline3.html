@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+<title>Glasgow Memory Server (GMS)</title>
+    
+<!--meta(name='description', content='website description')-->
+    
+<!--meta(name='keywords', content='website keywords, website keywords')-->
+    
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+    
+<link href="/resources/stylesheets/style2.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="/resources/javascripts/jquery.js" ></script>
+    
+<script src="resources/javascripts/modernizr-1.5.min.js" type="text/javascript"></script>
+
+<script>
+function getSubTopic(name) {
+	$.get("/subtags?tagname="+name, "", function(data, status) {
+		//var ul=document.createElement('ul');
+		var i;
+		for ( i in data.SubTopics) {
+			var li=document.createElement("li");
+			li.setAttribute("id",data.SubTopics[i].Name+"link");
+			var a = document.createElement("a");
+			a.setAttribute("id",data.SubTopics[i].Name);
+			a.setAttribute("href","#");
+			a.onclick= function(){getSubTopic(data.SubTopics[i].Name);};
+			//a.onmouseover=function(){ mOver(a,li);};
+			li.appendChild(a);
+			var linkText = document.createTextNode(data.SubTopics[i].Name);
+			a.appendChild(linkText);
+			var element = document.getElementById(name+"link");
+			element.appendChild(li);
+		}
+	})
+}
+function removeElement(li){
+	li.parentNode.removeChild(li);
+}
+function mOver(a,li){
+	a.onmouseout=function(){removeElement(li);};
+}
+</script>
+
+</head>
+
+
+
+    
+
+    
+<div id="main">
+        
+<header>
+            
+<div id="logo">
+                
+<div id="logo_text">
+                    
+<!--class="logo_colour", allows you to change the colour of the text -->
+
+                    
+<h1><a href="index.html">Glasgow Memory Server(GMS)</a></h1>
+                
+</div>
+            
+</div>           
+            
+                
+<div id="menu_container">
+                    
+<ul id="menu-bar" style="left: 0px; top: 18px">
+ 
+{{range $index, $element := .SubTopics}}  
+<li class="active">                       
+  <a href="/">{{printf "%s" $element.Name}}</a>
+<ul>
+{{range $index2, $e1 := $element.SubTopics}}
+<li id="{{$e1.Name}}link"> <a onclick="getSubTopic({{$e1.Name}})" href="#" >{{printf "%s" $e1.Name}}</a></li>
+
+{{end}}
+</ul> 
+</li>
+{{end}}
+		
+
+                                            
+</ul>
+                
+</div>            
+
+</header>
+        
+<body>
+</body>
+</html>
+
