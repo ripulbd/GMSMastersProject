@@ -28,6 +28,7 @@ body {
   font: normal .80em 'Droid Sans', arial, sans-serif;
   background: #F9F9F9;
   color: #000000;
+  overflow: scroll;
 }
 
 p { 
@@ -112,7 +113,7 @@ header {
 
 #logo_text h1, #logo_text h1 a, #logo_text h1 a:hover { 
   padding: 0;
-  color: #FFF;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -128,7 +129,7 @@ header {
 #logo_text h2 { 
   font-size: 140%;
   padding: 0 0 0 0;
-  color: #FFF;
+  color: #000;
 }
 
 #menu_container { 
@@ -150,19 +151,13 @@ header {
   z-index:100  
   } 
   
-.content { 
-  text-align: left;
+#content {
+  text-align : center;
   width: 80%;
   margin: 0 20px 15px 0;
-  float: left;
   font-size: 120%;
   padding: 14px 0 0 5px;
 }
-
-.content p { 
-  padding-left: 5px;
-}
-
 
 footer { 
   font: 100% 'Droid Sans', arial, sans-serif;
@@ -384,10 +379,8 @@ footer a:hover {
 
 ul.tx3-tag-cloud
 {
-    position: fixed;
-	transform: translate(50%, 30%);
+	transform: translate(15%, 5%);
     display:inline-block;
-    float:none;
 }
 
 ul.tx3-tag-cloud li
@@ -416,24 +409,29 @@ ul.tx3-tag-cloud li a:hover
     transition: color 250ms linear;
 }
 
-#tagC h2 {
+/*top right bottom left*/
+
+.tagC #keywordname {
+   padding:80px;
    text-transform:uppercase;
-   border-bottom : 2px solid #2F4F4F;
-   border-top : 2px solid #2F4F4F;
-   border-left: 2px solid #2F4F4F;
-   border-right : 2px solid #2F4F4F;
+   transform: translate(45%, 5%);
+   text-size:10em;
    text-align: center;
 }
 
-.lowlevellist {
-  width : 100 px;
-}
+/*.lowlevellist {
+  height: 40%;
+  
+}*/
 
+
+/*
 .lowlevellist h2 {
    text-transform: uppercase;
-   border-bottom : 2px solid #2F4F4F;
-   border-top : 2px solid #2F4F4F;
-   border-left: 2px solid #2F4F4F;
-   border-right : 2px solid #2F4F4F;
+   padding:20px;
+   border: 3px solid #2F4F4F;
+   border-radius:10px;
+   moz-border-radius:10px;
+   webkit-border-radius:10px;
    text-align:center;
-}
+}*/
