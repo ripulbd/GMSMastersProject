@@ -1,3 +1,35 @@
+/*
+===== Installation Guide =====
+Plugins:
+	1) mgo for connect with mongodb (https://labix.org/mgo)
+	> go get gopkg.in/mgo.v2
+	   
+	2) Gorilla for session (http://www.gorillatoolkit.org/pkg/sessions) 
+	> go get github.com/gorilla/sessions
+	   
+Mongodb:
+	1) Start Server Command (Run everytime)
+	> mongod --dbpath "%DBPATH%"
+	
+	2) Remove database (require server on)
+	> mongo
+	> use %DB%
+	> db.%COLLECTION.drop()
+	
+	3) Install database (require server on)
+	> mongoimport --db %DB% --collection %COLLECTION% --file %FILENAME%
+
+Appendix:
+	%DBPATH% = path to storage your database
+	%DB% = database name, DB_NAME in constant
+	%COLLECTION% = collection name, DB_COLLECTION_* in constant
+		This program has 3 collections
+		1) record = record of all news, DB_COLLECTION_RECORD in constant
+		2) modeling = modeling news with keywords, DB_COLLECTION_NEWS
+		3) keyword = keywords information (id,name,path), DB_COLLECTION_KEYWORD
+	%FILENAME% = json file name including path
+	- You can change XML file name at FILE_XML_NAME in constant
+*/
 package main
 
 import (
