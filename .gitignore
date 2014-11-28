@@ -1,3 +1,7 @@
+./.gitignore
+./.DS_Store
+server/lib/*.jar
+server/lib2/*.jar
 Visualization/GMS-Golang-V/timeline2.html
 Visualization/GMS-Golang-V/bin/timeline.exe
 Visualization/GMS-Golang-V/bin/timeline.exe
