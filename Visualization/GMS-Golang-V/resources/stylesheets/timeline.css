@@ -411,27 +411,30 @@ ul.tx3-tag-cloud li a:hover
 
 /*top right bottom left*/
 
-.tagC #keywordname {
-   padding:80px;
+.tagC #keywordname{
+   padding-top:80px;
    text-transform:uppercase;
    transform: translate(45%, 5%);
    text-size:10em;
    text-align: center;
 }
 
-/*.lowlevellist {
-  height: 40%;
-  
-}*/
+.lowlevellist #lowleveltopics{
+ width:1000px;
+}
 
 
-/*
-.lowlevellist h2 {
-   text-transform: uppercase;
-   padding:20px;
-   border: 3px solid #2F4F4F;
-   border-radius:10px;
-   moz-border-radius:10px;
-   webkit-border-radius:10px;
-   text-align:center;
+.lowlevellist #lowleveltopics ul{
+   width: 150px;
+   float: left;
+   margin: 10px;
+}
+
+/*.lowlevellist h2 {
+   padding:80px;
+   text-transform:uppercase;
+  /* transform: translate(45%, 5%);
+   text-size:10em;
+   text-align: center;
 }*/
+

@@ -21,7 +21,7 @@
 <script type="text/javascript" src="/resources/javascripts/jquery.tx3-tag-cloud.js" ></script>
 
 <script>
-function getSubTopic(name) {
+function getSubTopic(name){
 	$.get("/subtags?tagname="+name, "", function(data, status) {
 	//var ul=document.createElement('ul');
 	var element = document.getElementById("submenu");
@@ -48,7 +48,7 @@ function getSubTopic(name) {
 		}
 		
 		var i;
-		for ( i in data.SubTopics) {
+		for(i in data.SubTopics){
 			var li=document.createElement("li");
 			var a = document.createElement("a");
 			a.setAttribute("id",data.SubTopics[i].Name);
@@ -79,7 +79,7 @@ function showKeywords(topic){
       link.style.border = "none";
 	}
 	else {
-	for ( i in topic.Keywords) { 
+	for (i in topic.Keywords){ 
 	    link.style.border = "3px solid #2F4F4F";
 		link.style.borderRadius = "10px";
 		link.style.MozBorderRadius = "10px";
@@ -88,11 +88,12 @@ function showKeywords(topic){
 		li.setAttribute("data-weight",topic.Keywords[i].Weight);  
 		var a = document.createElement("a");
 		a.setAttribute("id",topic.Keywords[i].Name);
-		a.setAttribute("href","#");
-		a.onclick = function(topic.Keywords[i].Name) {
-		           return function() {
-				 showLowLevelTopics(topic.Keywords[i].Name);
-			 };
+		//a.setAttribute("href","#");
+		a.onclick = (function(name){
+		           return function(){
+				 showLowLevelTopics(name);
+			   };
+			 })(topic.Keywords[i].Name);
 		li.appendChild(a);
 		var linkText = document.createTextNode(topic.Keywords[i].Name);
 		a.appendChild(linkText);
@@ -104,39 +105,51 @@ function showKeywords(topic){
 	}
 }
 
-/*var response = {results: 2938; id: 9283};*/
+
 function showLowLevelTopics(keyword){
-//tha parw ena pinaka me ta lowleveltopics pou periexoun auto to keyword
-   var el = document.getElementById("lowleveltopics");
+  $.get("/showlist?keyword="+keyword, "", function(data, status) {  
+  // document.getElementById("keyword").innerHTML = keyword;
    var i;
+   var el = document.getElementById("lowleveltopics");
   //LowLevelTopics is the name of the table which has the LowLevelTopics for the specific keyword
-  //for(i in keyword.boxes){
-    for(i = 0; i < 3; i++){
-	  //box creation
-	   el.style.border = "3px solid #2F4F4F";
-	   el.style.borderRadius = "10px";
-	   el.style.MozBorderRadius = "10px";
-	   el.style.padding = "20px";
-	   var iDiv = document.createElement("div");
-	   iDiv.setAttribute = (id,"summary");
-	   //paragraph creation
+    for(i in data.NewGroups){
+    //for(i = 0; i < 3; i++){
+	  //big box creation  
+        var ul = document.createElement("ul");
+	   while (el.firstChild){
+		el.removeChild(el.firstChild);
+	   }
+	   //na fugw to ul apo e3w kai na dhmiourghsw ena ul edw
+	   ul.style.border = "3px solid #2F4F4F";
+	   ul.style.borderRadius = "10px";
+	   ul.style.MozBorderRadius = "10px";
+	   ul.style.padding = "10px";
+	   el.appendChild(ul);
+	   //small box creation in which the summary will be shown
+	    var iDiv = document.createElement("div");
+	   iDiv.setAttribute = ("id","summary");
+	   //paragraph creation for the summary
 	   var newElement = document.createElement("p");
-	   iDiv.appendChild("p");
+	   iDiv.appendChild(newElement);
+	   //text creation inside the paragraph
+	   //var summaryText = document.createTextNode(data.NewGroups.Summary);
 	   var summaryText = document.createTextNode("summary");
 	   newElement.appendChild(summaryText);
-	   el.appendChild(iDiv);
-       var li = document.createElement("li");
-       var a = document.createElement("a");
-	   /*Title is a variable inside the struct LowLevelTopics*/
-	   //var linkText = document.createTextNode(data.LowLevelTopics[i].Title);
-		//a.appendChild(linkText);
-       /*a.innerHTML=json[i];
-       a.setAttribute("href","#");
-      /* a.onclick = function(){ selectElement(a); };
-       li.appendChild(a);
-       el.appendChild(li);
-  }
-} */
+	   ul.appendChild(iDiv);
+	   var j;
+	  for(j in data.NewGroups[i].News){
+	   //for(j=0; j < 2; j++){
+         var li = document.createElement("li");
+         var a = document.createElement("a");
+	     //var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
+		 var linkText = document.createTextNode("Title1");
+		 a.appendChild(linkText);
+         a.setAttribute("href","#");
+         li.appendChild(a);
+         ul.appendChild(li);
+        } 
+    }
+  //})
 }
 
 
@@ -189,7 +202,7 @@ function showLowLevelTopics(keyword){
 </div>
 
 
-<div id="content" style="height: 80%">
+<div id="content" style="height:80%">
 <div class ="tagC">
   <h2 id="keywordname" style = "width:45%"></h2>
 	<ul id="tagcloud" style="width:50%;">
@@ -197,9 +210,8 @@ function showLowLevelTopics(keyword){
 </div>
 
 <div class = "lowlevellist">
-   <h2 id="keyword"></h2>
-     <ul id = "lowleveltopics">
-	 </ul>
+   <h2 id="keyword" style = "width:45%"></h2>
+    <div id = "lowleveltopics"></div>
 </div>
 </div>       	
 </body>
