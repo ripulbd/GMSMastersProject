@@ -1,185 +1,193 @@
 <topic name="News">
-	<keyword name="Other">
-	</keyword>
-	<topic name="Economics">
-		<topic name="Business">
-			<keyword name="Employment">
-			</keyword>
-			<keyword name="Investment">
-			</keyword>
-		</topic>
-		<topic name="Finance">
-			<keyword name="Currency">
-			</keyword>
-			<topic name="StockMarket">
-				<keyword name="StockExchange">
-				</keyword>
-			</topic>
-		</topic>
-	</topic>
-	<keyword name="Health">
-	</keyword>
-	<topic name="Society">
-		<topic name="Entertainment">
-			<keyword name="Music">
-			</keyword>
-			<keyword name="Games">
-			</keyword>
-			<keyword name="OtherEntianment">
-			</keyword>
-			<keyword name="Book">
-			</keyword>
-			<keyword name="Film">
-			</keyword>
-			<keyword name="Theatre">
-			</keyword>
-		</topic>
-		<keyword name="Accident">
-		</keyword>
-		<topic name="SocialEvent">
-			<keyword name="Cultural">
-			</keyword>
-		</topic>
-		<keyword name="OtherSocial">
-		</keyword>
-		<topic name="Incidence">
-			<keyword name="OtherIncidence">
-			</keyword>
-			<topic name="Crime">
-				<keyword name="SexualAssault">
-				</keyword>
-				<keyword name="OtherCrime">
-				</keyword>
-				<keyword name="Burglary">
-				</keyword>
-				<keyword name="Drug">
-				</keyword>
-				<topic name="Homicide">
-					<keyword name="Murder">
-					</keyword>
-					<keyword name="Kidnap">
-					</keyword>
-					<keyword name="Assault">
-					</keyword>
-				</topic>
-			</topic>
-		</topic>
-	</topic>
-	<keyword name="Transport">
-	</keyword>
-	<keyword name="Person">
-	</keyword>
-	<topic name="Sport">
-		<keyword name="Badminton">
-		</keyword>
-		<topic name="Racing">
-			<keyword name="F1">
-			</keyword>
-		</topic>
-		<keyword name="Gymnastics">
-		</keyword>
-		<keyword name="Cycling">
-		</keyword>
-		<keyword name="Snooker">
-		</keyword>
-		<keyword name="Swimming">
-		</keyword>
-		<keyword name="Boxing">
-		</keyword>
-		<keyword name="Golf">
-		</keyword>
-		<topic name="Football">
-			<topic name="Club">
-				<keyword name="Celtic">
-				</keyword>
-				<keyword name="Rangers">
-				</keyword>
-			</topic>
-			<topic name="League">
-				<keyword name="EPL">
-				</keyword>
-				<keyword name="LALiga">
-				</keyword>
-				<keyword name="SPFL">
-				</keyword>
-			</topic>
-		</topic>
-		<keyword name="Rugby">
-		</keyword>
-		<keyword name="Cricket">
-		</keyword>
-		<keyword name="Judo">
-		</keyword>
-		<keyword name="Atheletics">
-		</keyword>
-		<keyword name="OtherSport">
-		</keyword>
-		<keyword name="Squash">
-		</keyword>
-		<keyword name="Bowls">
-		</keyword>
-		<topic name="SportEvent">
-			<topic name="CWG">
-				<keyword name="OpeningCeremony">
-				</keyword>
-				<topic name="CWGEvents">
-					<keyword name="CWGCycling">
-					</keyword>
-					<keyword name="CWGTableTennis">
-					</keyword>
-					<keyword name="CWGSquash">
-					</keyword>
-					<keyword name="CWGTriathlon">
-					</keyword>
-					<keyword name="CWGBoxing">
-					</keyword>
-					<keyword name="CWGSwimming">
-					</keyword>
-					<keyword name="CWGHockey">
-					</keyword>
-					<keyword name="CWGDiving">
-					</keyword>
-					<keyword name="CWGJudo">
-					</keyword>
-					<keyword name="CWGWrestling">
-					</keyword>
-					<keyword name="CWGGymnastics">
-					</keyword>
-					<keyword name="CWGBowls">
-					</keyword>
-					<keyword name="CWGAthelatics">
-					</keyword>
-					<keyword name="CWGBadminton">
-					</keyword>
-					<keyword name="CWGNetball">
-					</keyword>
-					<keyword name="CWGWeightlifting">
-					</keyword>
-					<keyword name="CWGShooting">
-					</keyword>
-					<keyword name="CWGRugbySevens">
-					</keyword>
-				</topic>
-				<keyword name="OtherCWG">
-				</keyword>
-				<keyword name="ClosingCeremony">
-				</keyword>
-			</topic>
-		</topic>
-		<keyword name="TableTennis">
-		</keyword>
-		<keyword name="Tennis">
-		</keyword>
-		<keyword name="Hockey">
-		</keyword>
-	</topic>
-	<keyword name="Education">
-	</keyword>
-	<keyword name="Technology">
-	</keyword>
-	<keyword name="Environment">
-	</keyword>
-	<keyword name="Science">
-	</keyword>
+    <topic name="Art">
+    </topic>
+    <topic name="Home">
+    </topic>
+    <topic name="Recreation">
+    </topic>
+    <topic name="Computers">
+    </topic>
+    <topic name="Other">
+    </topic>
+    <topic name="Economics">
+        <topic name="Business">
+            <topic name="Employment">
+            </topic>
+            <topic name="Investment">
+            </topic>
+        </topic>
+        <topic name="Finance">
+            <topic name="Currency">
+            </topic>
+            <topic name="StockMarket">
+                <topic name="StockExchange">
+                </topic>
+            </topic>
+        </topic>
+    </topic>
+    <topic name="Health">
+    </topic>
+    <topic name="Society">
+        <topic name="Entertainment">
+            <topic name="Music">
+            </topic>
+            <topic name="Games">
+            </topic>
+            <topic name="OtherEntianment">
+            </topic>
+            <topic name="Book">
+            </topic>
+            <topic name="Film">
+            </topic>
+            <topic name="Theatre">
+            </topic>
+        </topic>
+        <topic name="Accident">
+        </topic>
+        <topic name="SocialEvent">
+            <topic name="Cultural">
+            </topic>
+        </topic>
+        <topic name="OtherSocial">
+        </topic>
+        <topic name="Incidence">
+            <topic name="OtherIncidence">
+            </topic>
+            <topic name="Crime">
+                <topic name="SexualAssault">
+                </topic>
+                <topic name="OtherCrime">
+                </topic>
+                <topic name="Burglary">
+                </topic>
+                <topic name="Drug">
+                </topic>
+                <topic name="Homicide">
+                    <topic name="Murder">
+                    </topic>
+                    <topic name="Kidnap">
+                    </topic>
+                    <topic name="Assault">
+                    </topic>
+                </topic>
+            </topic>
+        </topic>
+    </topic>
+    <topic name="Transport">
+    </topic>
+    <topic name="Person">
+    </topic>
+    <topic name="Sport">
+        <topic name="Badminton">
+        </topic>
+        <topic name="Racing">
+            <topic name="F1">
+            </topic>
+        </topic>
+        <topic name="Gymnastics">
+        </topic>
+        <topic name="Cycling">
+        </topic>
+        <topic name="Snooker">
+        </topic>
+        <topic name="Swimming">
+        </topic>
+        <topic name="Boxing">
+        </topic>
+        <topic name="Golf">
+        </topic>
+        <topic name="Football">
+            <topic name="Club">
+                <topic name="Celtic">
+                </topic>
+                <topic name="Rangers">
+                </topic>
+            </topic>
+            <topic name="League">
+                <topic name="EPL">
+                </topic>
+                <topic name="LALiga">
+                </topic>
+                <topic name="SPFL">
+                </topic>
+            </topic>
+        </topic>
+        <topic name="Rugby">
+        </topic>
+        <topic name="Cricket">
+        </topic>
+        <topic name="Judo">
+        </topic>
+        <topic name="Atheletics">
+        </topic>
+        <topic name="OtherSport">
+        </topic>
+        <topic name="Squash">
+        </topic>
+        <topic name="Bowls">
+        </topic>
+        <topic name="SportEvent">
+            <topic name="CWG">
+                <topic name="OpeningCeremony">
+                </topic>
+                <topic name="CWGEvents">
+                    <topic name="CWGCycling">
+                    </topic>
+                    <topic name="CWGTableTennis">
+                    </topic>
+                    <topic name="CWGSquash">
+                    </topic>
+                    <topic name="CWGTriathlon">
+                    </topic>
+                    <topic name="CWGBoxing">
+                    </topic>
+                    <topic name="CWGSwimming">
+                    </topic>
+                    <topic name="CWGHockey">
+                    </topic>
+                    <topic name="CWGDiving">
+                    </topic>
+                    <topic name="CWGJudo">
+                    </topic>
+                    <topic name="CWGWrestling">
+                    </topic>
+                    <topic name="CWGGymnastics">
+                    </topic>
+                    <topic name="CWGBowls">
+                    </topic>
+                    <topic name="CWGAthelatics">
+                    </topic>
+                    <topic name="CWGBadminton">
+                    </topic>
+                    <topic name="CWGNetball">
+                    </topic>
+                    <topic name="CWGWeightlifting">
+                    </topic>
+                    <topic name="CWGShooting">
+                    </topic>
+                    <topic name="CWGRugbySevens">
+                    </topic>
+                </topic>
+                <topic name="OtherCWG">
+                </topic>
+                <topic name="ClosingCeremony">
+                </topic>
+            </topic>
+        </topic>
+        <topic name="TableTennis">
+        </topic>
+        <topic name="Tennis">
+        </topic>
+        <topic name="Hockey">
+        </topic>
+    </topic>
+    <topic name="Education">
+    </topic>
+    <topic name="Technology">
+    </topic>
+    <topic name="Environment">
+    </topic>
+    <topic name="Science">
+    </topic>
 </topic>
 
