@@ -32,11 +32,11 @@ function getSubTopic(name) {
 		}
 
 		//add previous
-		if(highlevel ==null){
+		if(highlevel == null){
 			var li=document.createElement("li");
 			var a = document.createElement("a");
 			a.setAttribute("href","#");
-			a.onclick= (function(name){ 
+			a.onclick = (function(name){ 
 				return  function(){
 					getSubTopic(name);
 				};
@@ -66,6 +66,7 @@ function getSubTopic(name) {
 		showKeywords(data);
 	})
 }
+
 function showKeywords(topic){
 	var element = document.getElementById("tagcloud");
 	while (element.firstChild) {
@@ -73,20 +74,69 @@ function showKeywords(topic){
 	}
 	document.getElementById("keywordname").innerHTML = topic.Name;
 	var i;
-	for ( i in topic.Keywords) {
+	var link = document.getElementById("tagcloud");
+	if(!topic.Keywords){ 
+      link.style.border = "none";
+	}
+	else {
+	for ( i in topic.Keywords) { 
+	    link.style.border = "3px solid #2F4F4F";
+		link.style.borderRadius = "10px";
+		link.style.MozBorderRadius = "10px";
+		link.style.padding = "20px";
 		var li=document.createElement("li");
-		li.setAttribute("data-weight",topic.Keywords[i].Weight);
+		li.setAttribute("data-weight",topic.Keywords[i].Weight);  
 		var a = document.createElement("a");
 		a.setAttribute("id",topic.Keywords[i].Name);
 		a.setAttribute("href","#");
+		a.onclick = function(topic.Keywords[i].Name) {
+		           return function() {
+				 showLowLevelTopics(topic.Keywords[i].Name);
+			 };
 		li.appendChild(a);
 		var linkText = document.createTextNode(topic.Keywords[i].Name);
 		a.appendChild(linkText);
 		element.appendChild(li);
-	}
+	 }
 	$("#tagcloud").tx3TagCloud({
 		multiplier: 2
 	});
+	}
+}
+
+/*var response = {results: 2938; id: 9283};*/
+function showLowLevelTopics(keyword){
+//tha parw ena pinaka me ta lowleveltopics pou periexoun auto to keyword
+   var el = document.getElementById("lowleveltopics");
+   var i;
+  //LowLevelTopics is the name of the table which has the LowLevelTopics for the specific keyword
+  //for(i in keyword.boxes){
+    for(i = 0; i < 3; i++){
+	  //box creation
+	   el.style.border = "3px solid #2F4F4F";
+	   el.style.borderRadius = "10px";
+	   el.style.MozBorderRadius = "10px";
+	   el.style.padding = "20px";
+	   var iDiv = document.createElement("div");
+	   iDiv.setAttribute = (id,"summary");
+	   //paragraph creation
+	   var newElement = document.createElement("p");
+	   iDiv.appendChild("p");
+	   var summaryText = document.createTextNode("summary");
+	   newElement.appendChild(summaryText);
+	   el.appendChild(iDiv);
+       var li = document.createElement("li");
+       var a = document.createElement("a");
+	   /*Title is a variable inside the struct LowLevelTopics*/
+	   //var linkText = document.createTextNode(data.LowLevelTopics[i].Title);
+		//a.appendChild(linkText);
+       /*a.innerHTML=json[i];
+       a.setAttribute("href","#");
+      /* a.onclick = function(){ selectElement(a); };
+       li.appendChild(a);
+       el.appendChild(li);
+  }
+} */
 }
 
 
@@ -94,8 +144,7 @@ function showKeywords(topic){
 
 </head>
 
-
-<body>   
+<body>  
 <div id="main">
         
 <header>
@@ -113,7 +162,7 @@ function showKeywords(topic){
             
 </div>           
             
-                
+               
 <div id="menu_container" style="height: 63px">
                     
 <ul id="menu-bar" style="left: 0px; top: 18px">
@@ -139,18 +188,20 @@ function showKeywords(topic){
 
 </div>
 
-<div id ="tagC">
-  <h2 id="keywordname"></h2>
+
+<div id="content" style="height: 80%">
+<div class ="tagC">
+  <h2 id="keywordname" style = "width:45%"></h2>
 	<ul id="tagcloud" style="width:50%;">
 	</ul>
 </div>
 
 <div class = "lowlevellist">
-   <h2 id="keyword">Sports</h2>
-     <li id = "lowleveltopics">
-	 </li>
+   <h2 id="keyword"></h2>
+     <ul id = "lowleveltopics">
+	 </ul>
 </div>
-       	
+</div>       	
 </body>
 </html>
 
