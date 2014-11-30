@@ -10,7 +10,8 @@ cwords = fwords.readlines()
 for llist in clist: # "keywords":"[quot, added, year, told, eveningtimes, people, work, mr, place]","path":"News/Art;"}
 	iid = llist.split("\"")		# iid[3]: 5412d53ce4b0eb14137b44b8
 	words = iid[7][1:-1].split(",")		# keywords: [quot, added, year, told, eveningtimes, people, work, mr, place]
-	print "{\"newsId\":\"ObjectId(\\\""+str(iid[3])+"\\\")\",",
+	print "{\"newsId\":\""+str(iid[3])+"\",",
+	# print "{\"newsId\":\"ObjectId(\\\""+str(iid[3])+"\\\")\",",
 	wordlist = ""
 	for word in words:
 		word = word.replace(" ", "")
