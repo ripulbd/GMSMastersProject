@@ -1,3 +1,35 @@
+/*
+===== Installation Guide =====
+Plugins:
+	1) mgo for connect with mongodb (https://labix.org/mgo)
+	> go get gopkg.in/mgo.v2
+	   
+	2) Gorilla for session (http://www.gorillatoolkit.org/pkg/sessions) 
+	> go get github.com/gorilla/sessions
+	   
+Mongodb:
+	1) Start Server Command (Run everytime)
+	> mongod --dbpath "%DBPATH%"
+	
+	2) Remove database (require server on)
+	> mongo
+	> use %DB%
+	> db.%COLLECTION.drop()
+	
+	3) Install database (require server on)
+	> mongoimport --db %DB% --collection %COLLECTION% --file %FILENAME%
+
+Appendix:
+	%DBPATH% = path to storage your database
+	%DB% = database name, DB_NAME in constant
+	%COLLECTION% = collection name, DB_COLLECTION_* in constant
+		This program has 3 collections
+		1) record = record of all news, DB_COLLECTION_RECORD in constant
+		2) modeling = modeling news with keywords, DB_COLLECTION_NEWS
+		3) keyword = keywords information (id,name,path), DB_COLLECTION_KEYWORD
+	%FILENAME% = json file name including path
+	- You can change XML file name at FILE_XML_NAME in constant
+*/
 package main
 
 import (
@@ -17,7 +49,6 @@ import (
 	"net/http"
 	"regexp"
 	"html/template"
-	"math/rand"
 	"github.com/gorilla/sessions"
 	"strings"
 	"github.com/gorilla/context"
@@ -34,7 +65,7 @@ const (
 	DB_COLLECTION_RECORD = "News";
 	DB_COLLECTION_NEWS = "modeling";
 	DB_COLLECTION_KEYWORD = "keywords";
-	COSINE_THRESHOLD = 0.7;
+	COSINE_THRESHOLD = 0.8;
 	FILE_XML_NAME = "xmlDemo.xml";
 )
 
@@ -174,11 +205,12 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 		}
 		for j := i+1; j<len(allVectorValue) ; j++ {	
 			if calculateResult[i][j] > COSINE_THRESHOLD {
+				fmt.Println(i,j,calculateResult[i][j])
 				group[j] = i
 			}
 		}
 	}
-	fmt.Println(group)
+	
 	// find number of group
 	var number []int
 	var duplicate bool
@@ -201,7 +233,7 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	for i := 0; i<len(number) ; i++ {	
 		var news []News
 		for j := 0; j<len(group) ; j++ {
-			if group[j] == i {
+			if group[j] == number[i] {
 				news = append(news,allNews[j])
 			}
 		}
@@ -370,11 +402,12 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
 		topic = readTopicNameXML(tagname,path);	
 	}
 	
+	// save topic without keywords to session because keywords are too big
 	fmt.Println(topic);
 	session.Values[SESSION_KEY_PREVIOUS_TOPIC] = &topic
 	session.Save(r,w)
 	
-	/*dbSession, err := mgo.Dial("localhost")
+	dbSession, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)
 	}
@@ -384,18 +417,15 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
 	dbSession.SetMode(mgo.Monotonic, true)
 
 	collectionKeywords := dbSession.DB(DB_NAME).C(DB_COLLECTION_KEYWORD)
-	*/
-	  
+	collectionKeywords.Find(bson.M{"path":topic.Path + PATH_SEPARATER + topic.Name}).All(&topic.Keywords)
+	
+	//update weight
 	for i := range topic.Keywords {
-		/*keyword := topic.Keywords[i]
-		// update keyword id
-		collectionKeywords.Find(bson.M{"keyword":keyword.Name,"path":keyword.Path}).One(&keyword)
 		var news []News
 		collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
-		collectionNews.Find(bson.M{"keywords":keyword.ID}).All(&news)*/
+		collectionNews.Find(bson.M{"keywords":topic.Keywords[i].ID}).All(&news)
 		k :=  &topic.Keywords[i]
-		//k.Weight = len(news)
-	    k.Weight = rand.Int()%40
+		k.Weight = len(news)
 	}
 	
 	//send it back to html
@@ -412,18 +442,12 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
 func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	var keyword Keyword
-	keywordName := r.URL.Query()["keyword"][0]
+	keyword.Name = r.URL.Query()["keyword"][0]
 	
 	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
 	
 	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
-		for _,k := range previous_topic.Keywords {	
-		    if k.Name == keywordName {	
-		    	keyword = k
-		    	keyword.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
-		    	break
-	    	}
-		}
+		keyword.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
 	}else{
 		// error
 		return
@@ -434,6 +458,8 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	defer dbSession.Close()
+	
+	fmt.Println(keyword)
 
 	// Optional. Switch the session to a monotonic behavior.
 	dbSession.SetMode(mgo.Monotonic, true)
@@ -444,9 +470,30 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	var news []News
 	collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
 	collectionNews.Find(bson.M{"keywords":keyword.ID}).All(&news)
-	newsGroup := generateNewsGroup(news)
 	
-	js, err := json.Marshal(newsGroup)
+	collectionRecords := dbSession.DB(DB_NAME).C(DB_COLLECTION_RECORD)
+	for i := range news {
+		var n News
+		id := strings.Split(news[i].NewsID,"\"")[1]
+		fmt.Println(id)
+		collectionRecords.Find(bson.M{"_id":bson.ObjectIdHex(id)}).One(&n)
+		n.NewsID = news[i].NewsID
+		n.KeywordIDs = news[i].KeywordIDs
+		news[i] = n 
+	}
+	
+	
+	fmt.Println("input",len(news))
+	var newsGroup []NewsGroup = generateNewsGroup(news)
+	fmt.Println(len(newsGroup))
+	for i:= range newsGroup{
+		fmt.Println(i)
+		for j:= range newsGroup[i].News {
+			fmt.Println(newsGroup[i].News[j].Title)
+		}
+	}
+	var listGroup ListNewsGroup = ListNewsGroup{newsGroup,keyword}
+	js, err := json.Marshal(listGroup)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
