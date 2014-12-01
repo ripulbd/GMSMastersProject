@@ -107,19 +107,17 @@ function showKeywords(topic){
 
 
 function showLowLevelTopics(keyword){
-  $.get("/showlist?keyword="+keyword, "", function(data, status) {  
-  // document.getElementById("keyword").innerHTML = keyword;
+  //$.get("/showlist?keyword="+keyword, "", function(data, status) {  
    var i;
-   var el = document.getElementById("lowleveltopics");
-  //LowLevelTopics is the name of the table which has the LowLevelTopics for the specific keyword
-    for(i in data.NewGroups){
-    //for(i = 0; i < 3; i++){
-	  //big box creation  
-        var ul = document.createElement("ul");
-	   while (el.firstChild){
+     var el = document.getElementById("lowleveltopics");
+     while(el.firstChild){
 		el.removeChild(el.firstChild);
 	   }
+    //for(i in data.NewGroups){
+    for(i = 0; i < 3; i++){
+	  //big box creation  
 	   //na fugw to ul apo e3w kai na dhmiourghsw ena ul edw
+	   var ul = document.createElement("ul");
 	   ul.style.border = "3px solid #2F4F4F";
 	   ul.style.borderRadius = "10px";
 	   ul.style.MozBorderRadius = "10px";
@@ -127,7 +125,7 @@ function showLowLevelTopics(keyword){
 	   el.appendChild(ul);
 	   //small box creation in which the summary will be shown
 	    var iDiv = document.createElement("div");
-	   iDiv.setAttribute = ("id","summary");
+	   iDiv.setAttribute("id","summary");
 	   //paragraph creation for the summary
 	   var newElement = document.createElement("p");
 	   iDiv.appendChild(newElement);
@@ -137,8 +135,8 @@ function showLowLevelTopics(keyword){
 	   newElement.appendChild(summaryText);
 	   ul.appendChild(iDiv);
 	   var j;
-	  for(j in data.NewGroups[i].News){
-	   //for(j=0; j < 2; j++){
+	  //for(j in data.NewGroups[i].News){
+	   for(j=0; j < 2; j++){
          var li = document.createElement("li");
          var a = document.createElement("a");
 	     //var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
@@ -211,7 +209,7 @@ function showLowLevelTopics(keyword){
 
 <div class = "lowlevellist">
    <h2 id="keyword" style = "width:45%"></h2>
-    <div id = "lowleveltopics"></div>
+   <div id="lowleveltopics"></div>
 </div>
 </div>       	
 </body>

@@ -419,17 +419,39 @@ ul.tx3-tag-cloud li a:hover
    text-align: center;
 }
 
-.lowlevellist #lowleveltopics{
- width:1000px;
+.lowlevellist #lowleveltopics  {
+ width:1200px;
+ padding-left: 80px;
 }
 
 
 .lowlevellist #lowleveltopics ul{
-   width: 150px;
+   width: 350px;
    float: left;
-   margin: 10px;
+   margin: 5px;
+   display:inline;
 }
 
+.lowlevellist #lowleveltopics ul #summary{
+  margin: 5px;
+  background-color: #F5ECCE;
+}
+
+.lowlevellist #lowleveltopics ul #summary p{
+  font-weight: bold;
+}
+
+.lowlevellist #lowleveltopics ul li:hover{
+  transform: scale(1.1 , 1); 
+}
+
+.lowlevellist #lowleveltopics ul li {
+   width: 350px;
+   padding-top: 10px;
+   background-color: #B0C4DE;
+   display: block;
+}
+  
 /*.lowlevellist h2 {
    padding:80px;
    text-transform:uppercase;
