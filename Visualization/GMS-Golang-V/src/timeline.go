@@ -18,6 +18,11 @@ Mongodb:
 	
 	3) Install database (require server on)
 	> mongoimport --db %DB% --collection %COLLECTION% --file %FILENAME%
+	
+	4) Check current collections
+	> mongo
+	> use %DB%
+	> show collections
 
 Appendix:
 	%DBPATH% = path to storage your database
@@ -29,6 +34,7 @@ Appendix:
 		3) keyword = keywords information (id,name,path), DB_COLLECTION_KEYWORD
 	%FILENAME% = json file name including path
 	- You can change XML file name at FILE_XML_NAME in constant
+	- You should drop old collection if you want to update the new json file
 */
 package main
 
@@ -62,10 +68,10 @@ const (
 	SESSION_KEY_TOPIC_PATH = "TopicPath"
 	PATH_SEPARATER = "/";
 	DB_NAME = "demo";
-	DB_COLLECTION_RECORD = "News";
+	DB_COLLECTION_RECORD = "records";
 	DB_COLLECTION_NEWS = "modeling";
 	DB_COLLECTION_KEYWORD = "keywords";
-	COSINE_THRESHOLD = 0.8;
+	COSINE_THRESHOLD = 0.4;
 	FILE_XML_NAME = "xmlDemo.xml";
 )
 
@@ -152,12 +158,14 @@ func generateVectorValue(template,keywords []string) ([]int){
 
 func generateNewsGroup(allNews []News) ([]NewsGroup){
 	// find vector template from intersection of every keyword
-	var vectorTemplate []string
+	var vectorTemplate1 []string // vector template for keywords
+	var vectorTemplate2 []string // vector template for title
 	var contains bool
 	for _,news := range allNews {	
+		// find vector template of keywords
 		for _,keyword := range news.KeywordIDs {	
 			contains = false
-			for _,v := range vectorTemplate {	
+			for _,v := range vectorTemplate1 {	
 				if v == keyword {
 					contains = true
 					break
@@ -167,25 +175,46 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 				// already add keyword into vector
 				continue
 			}
-			vectorTemplate = append(vectorTemplate,keyword)
+			vectorTemplate1 = append(vectorTemplate1,keyword)
+		}
+		// find vector template for title
+		for _,title := range strings.Split(news.Title," ") {	
+			contains = false
+			for _,v := range vectorTemplate2 {	
+				if v == title {
+					contains = true
+					break
+				}
+			}
+			if contains {
+				// already add keyword into vector
+				continue
+			}
+			vectorTemplate2 = append(vectorTemplate2,title)
 		}
 	}
 	
-	var allVectorValue [][]int = make([][]int,len(allNews))
+	var allVectorValue1 [][]int = make([][]int,len(allNews)) // all vector value for keywords
+	var allVectorValue2 [][]int = make([][]int,len(allNews)) // all vector value for title
 	
 	// find vector value
 	for i := range allNews {	
-		allVectorValue[i] = generateVectorValue(vectorTemplate,allNews[i].KeywordIDs)
+		allVectorValue1[i] = generateVectorValue(vectorTemplate1,allNews[i].KeywordIDs)
+		allVectorValue2[i] = generateVectorValue(vectorTemplate2,strings.Split(allNews[i].Title," "))
 	}
 	
 	// calculate consine similarity
-	var calculateResult [][]float64 = make([][]float64,len(allNews))
-	for i := range calculateResult {
-		calculateResult[i] = make([]float64,len(allNews))
+	var calculateResult1 [][]float64 = make([][]float64,len(allNews)) // calculate result for keywords
+	var calculateResult2 [][]float64 = make([][]float64,len(allNews)) // calculate result for title
+	for i := range calculateResult1 {
+		calculateResult1[i] = make([]float64,len(allNews))
+		calculateResult2[i] = make([]float64,len(allNews))
 	}
-	for i := 0; i<len(allVectorValue) ; i++ {	
-		for j := i+1; j<len(allVectorValue) ; j++ {	
-			calculateResult[i][j] = calculateCosineSimilarity(allVectorValue[i],allVectorValue[j])
+
+	for i := 0; i<len(allVectorValue1) ; i++ {	
+		for j := i+1; j<len(allVectorValue1) ; j++ {	
+			calculateResult1[i][j] = calculateCosineSimilarity(allVectorValue1[i],allVectorValue1[j])
+			calculateResult2[i][j] = calculateCosineSimilarity(allVectorValue2[i],allVectorValue2[j])
 		}
 	}
 	
@@ -195,17 +224,23 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	for i := 0; i<len(group) ; i++ {	
 		group[i] = i;
 	}
-	for i := 0; i<len(allVectorValue) ; i++ {	
+	for i := 0; i<len(allVectorValue1) ; i++ {	
 		if group[i] != i {
 			/* 
 			 * if news i already move a group, it assume that pair of similar which news i 
 			 * should be in the same group with news i
-			*/
+			 */
 			continue
 		}
-		for j := i+1; j<len(allVectorValue) ; j++ {	
-			if calculateResult[i][j] > COSINE_THRESHOLD {
-				fmt.Println(i,j,calculateResult[i][j])
+		for j := i+1; j<len(allVectorValue1) ; j++ {
+			if calculateResult1[i][j]*calculateResult2[i][j] > COSINE_THRESHOLD {
+				if group[j] != j && calculateResult1[i][j]*calculateResult2[i][j] < calculateResult1[group[j]][j]*calculateResult2[group[j]][j]{
+					/* 
+					 * same reason as above
+					 */
+					continue
+				}
+				fmt.Println("group: ",i," index: ",j," p(k) = ",calculateResult1[i][j]," p(t) = ",calculateResult2[i][j])
 				group[j] = i
 			}
 		}
@@ -230,11 +265,13 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 
 	// create group result
 	var result []NewsGroup = make([]NewsGroup,len(number))
-	for i := 0; i<len(number) ; i++ {	
+	for i := 0; i<len(number) ; i++ {
+		fmt.Println("<group>",number[i])	
 		var news []News
 		for j := 0; j<len(group) ; j++ {
 			if group[j] == number[i] {
 				news = append(news,allNews[j])
+				fmt.Println("index:",j,allNews[j].Title)
 			}
 		}
 		result[i] = NewsGroup{"","",news}	
@@ -474,24 +511,15 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	collectionRecords := dbSession.DB(DB_NAME).C(DB_COLLECTION_RECORD)
 	for i := range news {
 		var n News
-		id := strings.Split(news[i].NewsID,"\"")[1]
-		fmt.Println(id)
-		collectionRecords.Find(bson.M{"_id":bson.ObjectIdHex(id)}).One(&n)
+		collectionRecords.Find(bson.M{"_id":bson.ObjectIdHex(news[i].NewsID)}).One(&n)
 		n.NewsID = news[i].NewsID
 		n.KeywordIDs = news[i].KeywordIDs
 		news[i] = n 
 	}
 	
-	
 	fmt.Println("input",len(news))
 	var newsGroup []NewsGroup = generateNewsGroup(news)
-	fmt.Println(len(newsGroup))
-	for i:= range newsGroup{
-		fmt.Println(i)
-		for j:= range newsGroup[i].News {
-			fmt.Println(newsGroup[i].News[j].Title)
-		}
-	}
+	fmt.Println("output",len(newsGroup))
 	var listGroup ListNewsGroup = ListNewsGroup{newsGroup,keyword}
 	js, err := json.Marshal(listGroup)
 	if err != nil {
