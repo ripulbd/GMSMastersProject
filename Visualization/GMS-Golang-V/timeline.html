@@ -107,14 +107,14 @@ function showKeywords(topic){
 
 
 function showLowLevelTopics(keyword){
-  //$.get("/showlist?keyword="+keyword, "", function(data, status) {  
+  $.get("/showlist?keyword="+keyword, "", function(data, status) {  
    var i;
      var el = document.getElementById("lowleveltopics");
      while(el.firstChild){
 		el.removeChild(el.firstChild);
 	   }
-    //for(i in data.NewGroups){
-    for(i = 0; i < 3; i++){
+    for(i in data.NewGroups){
+    //for(i = 0; i < 3; i++){
 	  //big box creation  
 	   //na fugw to ul apo e3w kai na dhmiourghsw ena ul edw
 	   var ul = document.createElement("ul");
@@ -122,6 +122,10 @@ function showLowLevelTopics(keyword){
 	   ul.style.borderRadius = "10px";
 	   ul.style.MozBorderRadius = "10px";
 	   ul.style.padding = "10px";
+	   var p_intro = document.createElement("p");
+	   var p_value = document.createTextNode("SUMMARY:");
+	   p_intro.appendChild(p_value);
+	   ul.appendChild(p_intro);
 	   el.appendChild(ul);
 	   //small box creation in which the summary will be shown
 	    var iDiv = document.createElement("div");
@@ -135,19 +139,19 @@ function showLowLevelTopics(keyword){
 	   newElement.appendChild(summaryText);
 	   ul.appendChild(iDiv);
 	   var j;
-	  //for(j in data.NewGroups[i].News){
-	   for(j=0; j < 2; j++){
+	  for(j in data.NewGroups[i].News){
+	   //for(j=0; j < 2; j++){
          var li = document.createElement("li");
          var a = document.createElement("a");
-	     //var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
-		 var linkText = document.createTextNode("Title1");
+	     var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
+		 //var linkText = document.createTextNode("Title1 is about education news and business and has a lot of subnews!!");
 		 a.appendChild(linkText);
          a.setAttribute("href","#");
          li.appendChild(a);
          ul.appendChild(li);
         } 
     }
-  //})
+  })
 }
 
 

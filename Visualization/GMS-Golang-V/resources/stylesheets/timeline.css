@@ -381,6 +381,7 @@ ul.tx3-tag-cloud
 {
 	transform: translate(15%, 5%);
     display:inline-block;
+	padding-top: 40px;
 }
 
 ul.tx3-tag-cloud li
@@ -419,9 +420,11 @@ ul.tx3-tag-cloud li a:hover
    text-align: center;
 }
 
+
 .lowlevellist #lowleveltopics  {
  width:1200px;
  padding-left: 80px;
+ padding-top:70px;
 }
 
 
@@ -432,12 +435,22 @@ ul.tx3-tag-cloud li a:hover
    display:inline;
 }
 
+.lowlevellist #lowleveltopics ul p{
+  margin:5px;
+  text-transform:uppercase;
+  font-weight:bold;
+  padding-bottom: 5px;
+  text-align:left;
+}
+
 .lowlevellist #lowleveltopics ul #summary{
   margin: 5px;
   background-color: #F5ECCE;
 }
 
 .lowlevellist #lowleveltopics ul #summary p{
+  text-align:justify;
+  text-transform:lowercase;
   font-weight: bold;
 }
 
