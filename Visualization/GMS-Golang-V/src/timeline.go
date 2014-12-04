@@ -6,6 +6,9 @@ Plugins:
 	   
 	2) Gorilla for session (http://www.gorillatoolkit.org/pkg/sessions) 
 	> go get github.com/gorilla/sessions
+	
+	3) Snowball steming algorithm (https://github.com/kljensen/snowball)
+	> go get github.com/kljensen/snowball
 	   
 Mongodb:
 	1) Start Server Command (Run everytime)
@@ -59,6 +62,7 @@ import (
 	"strings"
 	"github.com/gorilla/context"
 	"math"
+	"github.com/kljensen/snowball"
 //	"unicode/utf8"
 )
 
@@ -115,7 +119,16 @@ type News struct{
 	MainStory   string   		`bson:"mainStory"`
 	Images      []Image  		`bson:"images"`
 	KeywordIDs	[]string		`bson:"keywords"`
-	//Keywords	[]Keyword		
+	Comments    []Comment 		`bson:"comments"`		
+}
+
+type Comment struct {
+	UserName    string    		`bson:"userName"`
+	TimeStamp   string    		`bson:"timeStamp"`
+	CommentBody string    		`bson:"commentBody"`
+	UpVote      int       		`bson:"upVote"`
+	DownVote    int       		`bson:"downVote"`
+	Replies     []Comment 		`bson:"replies"`
 }
 
 
@@ -160,7 +173,11 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	// find vector template from intersection of every keyword
 	var vectorTemplate1 []string // vector template for keywords
 	var vectorTemplate2 []string // vector template for title
+	//var vectorTemplate3 []string // vector template for description
 	var contains bool
+	var titleWords [][]string = make([][]string,len(allNews))// array to store every title from each news
+	//var descriptionWords [][]string = make([][]string,len(allNews))// array to store every title from each news
+	i := 0
 	for _,news := range allNews {	
 		// find vector template of keywords
 		for _,keyword := range news.KeywordIDs {	
@@ -177,9 +194,17 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 			}
 			vectorTemplate1 = append(vectorTemplate1,keyword)
 		}
+		
+		titleWords[i] = make([]string,0)
 		// find vector template for title
 		for _,title := range strings.Split(news.Title," ") {	
 			contains = false
+			// do stem
+			stemmed, err := snowball.Stem(title, "english", true)
+		    if err == nil{
+		        title = stemmed
+		    }
+		    titleWords[i] = append(titleWords[i],title)
 			for _,v := range vectorTemplate2 {	
 				if v == title {
 					contains = true
@@ -192,29 +217,58 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 			}
 			vectorTemplate2 = append(vectorTemplate2,title)
 		}
+		
+		/*descriptionWords[i] = make([]string,0)
+		// find vector template for title
+		for _,description := range strings.Split(news.Description," ") {	
+			contains = false
+			// do stem
+			stemmed, err := snowball.Stem(description, "english", true)
+		    if err == nil{
+		        description = stemmed
+		    }
+		    descriptionWords[i] = append(descriptionWords[i],description)
+			for _,v := range vectorTemplate3 {	
+				if v == description {
+					contains = true
+					break
+				}
+			}
+			if contains {
+				// already add keyword into vector
+				continue
+			}
+			vectorTemplate3 = append(vectorTemplate3,description)
+		}*/
+		i++
 	}
 	
 	var allVectorValue1 [][]int = make([][]int,len(allNews)) // all vector value for keywords
 	var allVectorValue2 [][]int = make([][]int,len(allNews)) // all vector value for title
+	//var allVectorValue3 [][]int = make([][]int,len(allNews)) // all vector value for description
 	
 	// find vector value
 	for i := range allNews {	
 		allVectorValue1[i] = generateVectorValue(vectorTemplate1,allNews[i].KeywordIDs)
-		allVectorValue2[i] = generateVectorValue(vectorTemplate2,strings.Split(allNews[i].Title," "))
+		allVectorValue2[i] = generateVectorValue(vectorTemplate2,titleWords[i])
+		//allVectorValue3[i] = generateVectorValue(vectorTemplate3,descriptionWords[i])
 	}
 	
 	// calculate consine similarity
 	var calculateResult1 [][]float64 = make([][]float64,len(allNews)) // calculate result for keywords
 	var calculateResult2 [][]float64 = make([][]float64,len(allNews)) // calculate result for title
+	//var calculateResult3 [][]float64 = make([][]float64,len(allNews)) // calculate result for description
 	for i := range calculateResult1 {
 		calculateResult1[i] = make([]float64,len(allNews))
 		calculateResult2[i] = make([]float64,len(allNews))
+		//calculateResult3[i] = make([]float64,len(allNews))
 	}
 
 	for i := 0; i<len(allVectorValue1) ; i++ {	
 		for j := i+1; j<len(allVectorValue1) ; j++ {	
 			calculateResult1[i][j] = calculateCosineSimilarity(allVectorValue1[i],allVectorValue1[j])
 			calculateResult2[i][j] = calculateCosineSimilarity(allVectorValue2[i],allVectorValue2[j])
+			//calculateResult3[i][j] = calculateCosineSimilarity(allVectorValue3[i],allVectorValue3[j])
 		}
 	}
 	
@@ -274,7 +328,19 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 				fmt.Println("index:",j,allNews[j].Title)
 			}
 		}
-		result[i] = NewsGroup{"","",news}	
+		//result[i] = NewsGroup{"","",news}	
+		// sorting more news -> less news
+		if len(news) > 1 {
+			for k := 0; k<=i;k++ {
+				if len(result[k].News)<len(news) {
+					copy(result[k+1:],result[k:])
+					result[k] = NewsGroup{"","",news}	
+					break
+				}
+			}
+		}else {
+			result[i] = NewsGroup{"","",news}	
+		}
 	} 
 	
 	return result
@@ -480,6 +546,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	var keyword Keyword
 	keyword.Name = r.URL.Query()["keyword"][0]
+	fmt.Println("Hello",keyword)
 	
 	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
 	
@@ -520,6 +587,33 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("input",len(news))
 	var newsGroup []NewsGroup = generateNewsGroup(news)
 	fmt.Println("output",len(newsGroup))
+	var newsList string
+	for i := range newsGroup {
+		newsList = ""
+		for _,news := range newsGroup[i].News {
+			if newsList == "" {
+				newsList = news.NewsID
+			}else{
+				newsList = newsList+";"+news.NewsID
+			}
+		}	
+		fmt.Println(newsList)
+		response, err := http.Get( "http://127.0.0.1:8080/Summary/servlet/server?newslist="+newsList)
+		if err != nil {
+	        fmt.Printf("%s", err)
+	    } else {
+	        defer response.Body.Close()
+	        contents, err := ioutil.ReadAll(response.Body)
+	        if err != nil {
+	            fmt.Printf("%s", err)
+	            os.Exit(1)
+	        }
+	        group := &newsGroup[i]
+	        group.Summary =  string(contents)
+	    }
+	}
+	fmt.Println(newsGroup)
+	
 	var listGroup ListNewsGroup = ListNewsGroup{newsGroup,keyword}
 	js, err := json.Marshal(listGroup)
 	if err != nil {
@@ -531,6 +625,41 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
   	w.Write(js)
 }
 
+func indiNewsHandler(w http.ResponseWriter, r *http.Request) {
+	
+	url := r.URL.Query()["url"][0];
+	
+	fmt.Printf("Query: %s\n", url)
+	
+	session, err := mgo.Dial("localhost")
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB(DB_NAME).C(DB_COLLECTION_RECORD)
+
+	var result News
+	err = c.Find(bson.M{"url": url}).One(&result)
+	
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	renderDetailNews(w, "detailNews", &result)
+}
+
+func renderDetailNews(w http.ResponseWriter, tmpl string, p *News) {
+	// Execute the template for each recipient.
+	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 
 var funcMap = template.FuncMap{
         // The name "inc" is what the function will be called in the template text.
@@ -539,7 +668,7 @@ var funcMap = template.FuncMap{
         },
 }
 
-var templates = template.Must(template.New("test").Funcs(funcMap).ParseFiles("timeline.html"))
+var templates = template.Must(template.New("test").Funcs(funcMap).ParseFiles("timeline.html", "detailNews.html"))
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Topic) {
 	// Execute the template for each recipient.
@@ -581,6 +710,7 @@ func main() {
 	http.HandleFunc("/timeline/", makeHandler(timelineHandler))
 	http.HandleFunc("/showlist", makeHandler(showListHandler))
 	http.HandleFunc("/subtags", makeHandler(topicHandler))
+	http.HandleFunc("/indiNews", makeHandler(indiNewsHandler))
 	http.Handle("/resources/", http.StripPrefix("/resources/", http.FileServer(http.Dir("resources"))))
     
     if *addr {
