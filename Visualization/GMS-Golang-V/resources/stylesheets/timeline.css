@@ -396,7 +396,7 @@ ul.tx3-tag-cloud li a
 {
 	display: block;
 	text-decoration: none;
-	color: #9378a9;
+	color: #c9c9c9;
 	padding: 3px 10px;
 }
 
@@ -425,7 +425,8 @@ ul.tx3-tag-cloud li a:hover
 .lowlevellist #lowleveltopics  {
  width:800px;
  padding-top:150px;
- transform: translate(10%, 5%);
+ padding-left: 40px;
+ transform: translate(50%, 5%);
 }
 
 

@@ -153,7 +153,7 @@ function showLowLevelTopics(keyword){
 	   var newElement = document.createElement("p");
 	   iDiv.appendChild(newElement);
 	   //text creation inside the paragraph
-	   var summaryText = document.createTextNode(data.NewGroups[i].Summary);
+	   var summaryText = document.createTextNode(unescape((data.NewGroups[i].Summary)));
 	   //var summaryText = document.createTextNode("summary");
 	   newElement.appendChild(summaryText);
 	   ul.appendChild(iDiv);
