@@ -329,8 +329,20 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 			}
 		}
 		//result[i] = NewsGroup{"","",news}	
-		// sorting more news -> less news
+		
 		if len(news) > 1 {
+			//check duplicate news
+			for k := 0; k<len(news);k++ {
+				for q := k+1; q<len(news);q++ {
+					if news[k].Url == news[q].Url {
+						//delete duplicate news
+						news[q],news = news[len(news)-1], news[:len(news)-1]
+						q--
+					}
+				}
+			}
+			
+			// sorting more news -> less news
 			for k := 0; k<=i;k++ {
 				if len(result[k].News)<len(news) {
 					copy(result[k+1:],result[k:])
@@ -612,7 +624,6 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	        group.Summary =  string(contents)
 	    }
 	}
-	fmt.Println(newsGroup)
 	
 	var listGroup ListNewsGroup = ListNewsGroup{newsGroup,keyword}
 	js, err := json.Marshal(listGroup)
