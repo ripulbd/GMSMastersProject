@@ -75,7 +75,7 @@ const (
 	DB_COLLECTION_NEWS = "modeling";
 	DB_COLLECTION_KEYWORD = "keywords";
 	COSINE_THRESHOLD = 0.4;
-	FILE_XML_NAME = "xmlDemo.xml";
+	FILE_XML_NAME = "ontology.xml";
 )
 
 var (
