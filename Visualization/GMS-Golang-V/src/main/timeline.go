@@ -168,6 +168,7 @@ func generateVectorValue(template,keywords []string) ([]int){
 	return vector
 }
 
+/* Classification the news into the group, each group contains the similar news by using cosine similarity method */
 func generateNewsGroup(allNews []News) ([]NewsGroup){
 	// find vector template from intersection of every keyword
 	var vectorTemplate1 []string // vector template for keywords
@@ -327,6 +328,7 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	return result
 }
 
+/* calculate cosine similarity value between vector1 and vector2 */
 func calculateCosineSimilarity(vector1,vector2 []int)(float64){
 	// find dot product between vector 1 and vector 2
 	var dotProduct int = 0
@@ -349,7 +351,7 @@ func calculateCosineSimilarity(vector1,vector2 []int)(float64){
 	return float64(dotProduct) / productMagnitudes
 }
 
-
+/* read whole ontology.xml file and convert into Topic syntax */
 func readTopic(reader io.Reader) (Topic, error) {
    
     decoder := xml.NewDecoder(reader)
@@ -374,6 +376,7 @@ func readTopic(reader io.Reader) (Topic, error) {
     return topic	, nil
 }
 
+/* return the Topic of XML file */
 func readXML()(Topic){
 	xmlPath, err := filepath.Abs(FILE_XML_NAME)
     if err != nil {
@@ -399,6 +402,7 @@ func readXML()(Topic){
     return topic
 }
 
+/* return specific topic by name and path */
 func readTopicNameXML(name string, path string)(Topic){
 	  topic := readXML()
 	  topic = topicTraveller(topic,name,path)
@@ -407,6 +411,7 @@ func readTopicNameXML(name string, path string)(Topic){
 
 // Depth first search
 /*
+	search the specific topic by name and path
 	If path is empty String, assume that user clicked on High Level topic and path was unknown.
 */
 func topicTraveller(topic Topic,name string, path string)(Topic){
@@ -438,6 +443,7 @@ func timelineHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "timeline", &topic)
 }
 
+/* show the submenu bar and tag cloud*/
 func topicHandler(w http.ResponseWriter, r *http.Request){
 	
 	var topic Topic
@@ -510,6 +516,7 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
   	w.Write(js)
 }
 
+/* show the list groups of similar news*/
 func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	var keyword Keyword
@@ -556,6 +563,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	var newsGroup []NewsGroup = generateNewsGroup(news)
 	fmt.Println("output",len(newsGroup))
 	var newsList string
+	// generate summary for each group
 	for i := range newsGroup {
 		newsList = ""
 		for _,news := range newsGroup[i].News {
@@ -566,6 +574,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}	
 		fmt.Println(newsList)
+		// connect to Summarization Server
 		response, err := http.Get( "http://127.0.0.1:8080/Summary/servlet/server?newslist="+newsList)
 		if err != nil {
 	        fmt.Printf("%s", err)
@@ -576,6 +585,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	            fmt.Printf("%s", err)
 	            os.Exit(1)
 	        }
+	        // update summary of each group
 	        group := &newsGroup[i]
 	        group.Summary =  string(contents)
 	    }
@@ -655,15 +665,6 @@ var validPath = regexp.MustCompile("^/(index|save|view)$")
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		/*m := validPath.FindStringSubmatch(r.URL.Path)
-		if m == nil {
-			http.NotFound(w, r)
-			return
-		}*/
-
-		//title := result.Title
-		//fmt.Println("Phone:", result.mainStory)
-
 		fn(w, r)
 	}
 }
