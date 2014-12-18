@@ -81,6 +81,8 @@ stanford-parser.jar
 9) Run timeline.go
 10) Access "localhost:8090" on your browser.
 
+** put all image in Visualization/GMS-Golang-V/resources/images
+
 === How to install and setup MongoDB ===
 1) Install MongoDB from (http://www.mongodb.org/)
 2) Create your "%DBPATH%" on your space

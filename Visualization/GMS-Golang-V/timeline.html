@@ -21,15 +21,19 @@
 <script type="text/javascript" src="/resources/javascripts/jquery.tx3-tag-cloud.js" ></script>
 
 <script>
-var scrollHandler = function(a,b){
-					if($(window).scrollTop() == $(document).height() - $(window).height()) {
-						showRemainedLowLevelTopics(a,b);
-					}	
-		};
 
+/* recursive function, get selected topic from GoLang 
+ * loop to create submenu from subtopics and also set this function to submenu again
+ * Steps:
+ * 1) remove all remained submenu
+ * 2) add previous button if neccesary
+ * 3) loop to create submenu
+ * 4) create tag cloud
+ */
 function getSubTopic(name){
+    // call function topicHandler in Golang
 	$.get("/subtags?tagname="+name, "", function(data, status) {
-	//var ul=document.createElement('ul');
+	// get element submenu
 	var element = document.getElementById("submenu");
 	//check high level
 	var highlevel = document.getElementById(data.Name+"HighLevel");	
@@ -53,172 +57,165 @@ function getSubTopic(name){
 			element.appendChild(li);
 		}
 		
+		// create submenu from subtopics
 		var i;
 		for(i in data.SubTopics){
 			var li=document.createElement("li");
 			var a = document.createElement("a");
 			a.setAttribute("id",data.SubTopics[i].Name);
 			a.setAttribute("href","#");
-			a.onclick= (function(name){ 
+			// add getSubTopic() agian to every menu in submenu
+			// this is a format to create recursive function in the loop
+			a.onclick= (function(name){ // name = assuming variable name of passing variable
 				return  function(){
-					getSubTopic(name);
+					getSubTopic(name); 
 				};
-			})(data.SubTopics[i].Name);
+			})(data.SubTopics[i].Name); // data.SubTopics[i].Name -> passing variable or input for function, so it will be "name" on the top.
 			li.appendChild(a);
 			var linkText = document.createTextNode(data.SubTopics[i].Name);
 			a.appendChild(linkText);
 			element.appendChild(li);
 		}
+		// create tag cloud
 		showKeywords(data);
 	})
 }
 
+/* create tag cloud function, use all keywords from input topic
+ * Steps:
+ * 1) Remove all remained keyword in tag cloud
+ * 2) create tag cloud, by looping all keywords
+ * 3) set weight to all keywords, use tx3-tag-cloud.js
+ * 4) set showLowLevelTopics() to every keywords
+ */
 function showKeywords(topic){
 	var element = document.getElementById("tagcloud");
+	// remove remained keywords
 	while (element.firstChild) {
 		element.removeChild(element.firstChild);
 	}
+	// get element to add tag cloud
 	document.getElementById("keywordname").innerHTML = topic.Name;
 	var i;
 	var link = document.getElementById("tagcloud");
+	// check this topic has keywords or not
 	if(!topic.Keywords){ 
+	  // no keywords
       link.style.border = "none";
 	}
 	else {
-	for (i in topic.Keywords){ 
-	    link.style.border = "3px solid #2F4F4F";
-		link.style.borderRadius = "10px";
-		link.style.MozBorderRadius = "10px";
-		link.style.padding = "20px";
-		var li=document.createElement("li");
-		li.setAttribute("data-weight",topic.Keywords[i].Weight);  
-		var a = document.createElement("a");
-		a.setAttribute("id",topic.Keywords[i].Name);
-		a.setAttribute("href","#");
-		a.onclick = (function(name){
-		           return function(){
-				 showLowLevelTopics(name);
-			   };
-			 })(topic.Keywords[i].Name);
-		li.appendChild(a);
-		var linkText = document.createTextNode(topic.Keywords[i].Name);
-		a.appendChild(linkText);
-		element.appendChild(li);
-	 }
-	$("#tagcloud").tx3TagCloud({
-		multiplier: 2
-	});
+		// has keywords -> create tag cloud
+		for (i in topic.Keywords){ 
+			link.style.border = "3px solid #2F4F4F";
+			link.style.borderRadius = "10px";
+			link.style.MozBorderRadius = "10px";
+			link.style.padding = "20px";
+			var li=document.createElement("li");
+			li.setAttribute("data-weight",topic.Keywords[i].Weight);  
+			var a = document.createElement("a");
+			a.setAttribute("id",topic.Keywords[i].Name);
+			a.setAttribute("href","#");
+			// set showLowLevelTopics() to keyword when user click
+			a.onclick = (function(name){
+				return function(){
+					showLowLevelTopics(name);
+				};
+			})(topic.Keywords[i].Name);
+			li.appendChild(a);
+			var linkText = document.createTextNode(topic.Keywords[i].Name);
+			a.appendChild(linkText);
+			element.appendChild(li);
+		}
+		// set size of tag cloud
+		$("#tagcloud").tx3TagCloud({
+			multiplier: 2
+		});
 	}
 }
 
-
+/* Show similar news group, get ListNewsGroup from GoLang
+ * Steps:
+ * 1) remove all remained news groups
+ * 2) find the maximum number to create group, set function if still have remained groups
+ * 3) create box and groups news + summary + title
+ * 4) set link to new tab for every title
+ */
 function showLowLevelTopics(keyword){
+   // call function showListHandler in Golang
   $.get("/showlist?keyword="+keyword, "", function(data, status) {  
-   var i;
-     var el = document.getElementById("lowleveltopics");
-     while(el.firstChild){
+    var i;
+	// get lowleveltopics element
+    var el = document.getElementById("lowleveltopics");
+	// remove all remained similar news groups
+    while(el.firstChild){
 		el.removeChild(el.firstChild);
-	 }
-	 var max = data.NewGroups.length;
-	 if( max > 5 ){
+	}
+	// set condition to show remained groups
+	var max = data.NewGroups.length;
+	if( max > 5 ){
 		max = 5;
 		var current = 5;
 		$(window).scroll(function() {
+		    // show remained groups when scroll down to bottom (do until current > max)
 			if($(window).scrollTop() == $(document).height() - $(window).height()) {
 				if( data.NewGroups.length > current){
-				   showRemainedLowLevelTopics(data,current);
-				   current = current + 5;
+				   createSimilarNewsGroups(data,current); // call function
+				   current = current + 5; // update current
 				}
 			}
 		});
-	 }
-    //for(i in data.NewGroups){
-    for(i = 0; i < max; i++){
-	  //big box creation  
-	   //na fugw to ul apo e3w kai na dhmiourghsw ena ul edw
-	   var ul = document.createElement("ul");
-	   ul.style.border = "3px solid #2F4F4F";
-	   ul.style.borderRadius = "10px";
-	   ul.style.MozBorderRadius = "10px";
-	   ul.style.padding = "10px";
-	   var p_intro = document.createElement("p");
-	   var p_value = document.createTextNode("SUMMARY:");
-	   p_intro.appendChild(p_value);
-	   ul.appendChild(p_intro);
-	   el.appendChild(ul);
-	   //small box creation in which the summary will be shown
-	    var iDiv = document.createElement("div");
-	   iDiv.setAttribute("id","summary");
-	   //paragraph creation for the summary
-	   var newElement = document.createElement("p");
-	   iDiv.appendChild(newElement);
-	   //text creation inside the paragraph
-	   var summaryText = document.createTextNode(unescape((data.NewGroups[i].Summary)));
-	   //var summaryText = document.createTextNode("summary");
-	   newElement.appendChild(summaryText);
-	   ul.appendChild(iDiv);
-	   var j;
-	  for(j in data.NewGroups[i].News){
-	   //for(j=0; j < 2; j++){
-         var li = document.createElement("li");
-         var a = document.createElement("a");
-	     var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
-		 //var linkText = document.createTextNode("Title1 is about education news and business and has a lot of subnews!!");
-		 a.appendChild(linkText);
-         a.setAttribute("href","/indiNews?url="+data.NewGroups[i].News[j].Url);
-		 a.setAttribute("target","_blank");
-         li.appendChild(a);
-         ul.appendChild(li);
-        } 
-    }
+	}
+	createSimilarNewsGroups(data,0); // create similar news group from 0 - 5 or max
   })
 }
 
-function showRemainedLowLevelTopics(data,index){
+/* create box of similar news groups
+ * from index to max (max is index+5 or data.NewGroups.length)
+ */
+function createSimilarNewsGroups(data,index){
 	var max = data.NewGroups.length;
-	 if( max > 5 + index ){
+	if( max > 5 + index ){
 		max = 5 + index;
 		
-	 }
+	}
+	// get lowleveltopics element
     var el = document.getElementById("lowleveltopics");
     for(i = index; i < max; i++){
-	  //big box creation  
-	   //na fugw to ul apo e3w kai na dhmiourghsw ena ul edw
-	   var ul = document.createElement("ul");
-	   ul.style.border = "3px solid #2F4F4F";
-	   ul.style.borderRadius = "10px";
-	   ul.style.MozBorderRadius = "10px";
-	   ul.style.padding = "10px";
-	   var p_intro = document.createElement("p");
-	   var p_value = document.createTextNode("SUMMARY:");
-	   p_intro.appendChild(p_value);
-	   ul.appendChild(p_intro);
-	   el.appendChild(ul);
-	   //small box creation in which the summary will be shown
-	    var iDiv = document.createElement("div");
-	   iDiv.setAttribute("id","summary");
-	   //paragraph creation for the summary
-	   var newElement = document.createElement("p");
-	   iDiv.appendChild(newElement);
-	   //text creation inside the paragraph
-	   var summaryText = document.createTextNode(data.NewGroups[i].Summary);
-	   //var summaryText = document.createTextNode("summary");
-	   newElement.appendChild(summaryText);
-	   ul.appendChild(iDiv);
-	   var j;
-	  for(j in data.NewGroups[i].News){
-	   //for(j=0; j < 2; j++){
-         var li = document.createElement("li");
-         var a = document.createElement("a");
-	     var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
-		 //var linkText = document.createTextNode("Title1 is about education news and business and has a lot of subnews!!");
-		 a.appendChild(linkText);
-         a.setAttribute("href","/indiNews?url="+data.NewGroups[i].News[j].Url);
-		 a.setAttribute("target","_blank");
-         li.appendChild(a);
-         ul.appendChild(li);
+		//big box creation  
+		var ul = document.createElement("ul");
+		ul.style.border = "3px solid #2F4F4F";
+		ul.style.borderRadius = "10px";
+		ul.style.MozBorderRadius = "10px";
+		ul.style.padding = "10px";
+		var p_intro = document.createElement("p");
+		var p_value = document.createTextNode("SUMMARY:");
+		p_intro.appendChild(p_value);
+		ul.appendChild(p_intro);
+		el.appendChild(ul);
+		//small box creation in which the summary will be shown
+		var iDiv = document.createElement("div");
+		iDiv.setAttribute("id","summary");
+		//paragraph creation for the summary
+		var newElement = document.createElement("p");
+		iDiv.appendChild(newElement);
+		//text creation inside the paragraph > add summary
+		var summaryText = document.createTextNode(unescape((data.NewGroups[i].Summary)));
+		newElement.appendChild(summaryText);
+		ul.appendChild(iDiv);
+		var j;   
+		// create all news titles
+		for(j in data.NewGroups[i].News){
+			var li = document.createElement("li");
+			var a = document.createElement("a");
+			var linkText = document.createTextNode(data.NewGroups[i].News[j].Title);
+			a.appendChild(linkText);
+			// create link go to news tab
+			a.setAttribute("href","/indiNews?url="+data.NewGroups[i].News[j].Url);
+			a.setAttribute("target","_blank");
+			li.appendChild(a);
+			ul.appendChild(li);
         } 
-    }
+	}
 }
 
 
@@ -227,62 +224,59 @@ function showRemainedLowLevelTopics(data,index){
 </head>
 
 <body>  
-<div id="main">
-        
-<header>
-            
-<div id="logo">
-                
-<div id="logo_text">
-                    
-<!--class="logo_colour", allows you to change the colour of the text -->
+	<div id="main">
+			
+		<header>
+					
+			<div id="logo">
+							
+				<div id="logo_text">
+									
+					<!--class="logo_colour", allows you to change the colour of the text -->
 
-                    
-<h1><a href="index.html">Glasgow Memory Server(GMS)</a></h1>
-                
-</div>
-            
-</div>           
-            
-               
-<div id="menu_container" style="height: 63px">
-                    
-<ul id="menu-bar" style="left: 0px; top: 18px">
- 
-{{range $index, $element := .SubTopics}}  
-<li id={{$element.Name}}HighLevel>                       
-   <a id={{$element.Name}} onclick="getSubTopic({{$element.Name}})" href="#" >{{printf "%s" $element.Name}}</a>
-</li>
-{{end}}
-                                            
-</ul>
+										
+					<h1><a href="index.html">Glasgow Memory Server(GMS)</a></h1>
+								
+				</div>
+						
+			</div>           
+						
+						   
+			<div id="menu_container" style="height: 63px">
+								
+				<ul id="menu-bar" style="left: 0px; top: 18px">
+					<!-- create menubar from Topic from timelineHandler in Golang -->
+					{{range $index, $element := .SubTopics}}  
+					<li id={{$element.Name}}HighLevel> 
+						<!-- set getSubTopic() to create submenu -->                      
+						<a id={{$element.Name}} onclick="getSubTopic({{$element.Name}})" href="#" >{{printf "%s" $element.Name}}</a>
+					</li>
+					{{end}}											
+				</ul>
+				
+				<!-- space for create submenu bar -->   
+				<div id="menu-bar" style="left: 0px; top: 5px">			 
+					<div id="submenu"></div>											
+				</div>    
+							
+			</div>
 
-<div id="menu-bar" style="left: 0px; top: 5px">
- 
-	<div id="submenu">
+		</header>
+
 	</div>
-                                            
-</div>    
-                
-</div>
 
-</header>
-
-</div>
-
-
-<div id="content" style="height:80%">
-<div class ="tagC">
-  <h2 id="keywordname" style = "width:45%"></h2>
-	<ul id="tagcloud" style="width:50%;">
-	</ul>
-</div>
-
-<div class = "lowlevellist">
-   <h2 id="keyword" style = "width:45%"></h2>
-   <div id="lowleveltopics"></div>
-</div>
-</div>       	
+	<!-- space for create tagcloud -->   
+	<div id="content" style="height:80%">
+		<div class ="tagC">
+			<h2 id="keywordname" style = "width:45%"></h2>
+			<ul id="tagcloud" style="width:50%;"></ul>
+		</div>
+		<!-- space for create similar news groups -->   
+		<div class = "lowlevellist">
+			<h2 id="keyword" style = "width:45%"></h2>
+			<div id="lowleveltopics"></div>
+		</div>
+	</div>       	
 </body>
 </html>
 

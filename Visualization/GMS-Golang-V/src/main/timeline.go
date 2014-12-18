@@ -38,6 +38,25 @@ Appendix:
 	%FILENAME% = json file name including path
 	- You can change XML file name at FILE_XML_NAME in constant
 	- You should drop old collection if you want to update the new json file
+	
+	
+=== About timeline.go ===
+   This program is server-side application to show topics and keyword from Topic Modeling
+   This program uses topic as menubar and subtopic ans submenubar.
+   This program uses keyword as tag cloud.
+   This program classifies similar news into the same group by using cosine similarity method
+   Cosine similarity in this program is use keywords and title of each news as input
+   This program display the similar news into the same group and show summary of similar news grom Summarization Server
+   This program show individual news details in the new tab
+   
+=== How to use ===
+  1) make sure you have ontology.xml in the correct location
+  2) install database and have database and collection name as same as constant field
+  3) start mongoDB server
+  4) start Summarization server
+  5) Run timeline.go
+  6) go to localhost:8090 in your browser
+  *** more details in ReadMe.md
 */
 package main
 
@@ -168,7 +187,34 @@ func generateVectorValue(template,keywords []string) ([]int){
 	return vector
 }
 
-/* Classification the news into the group, each group contains the similar news by using cosine similarity method */
+/* Classification the news into the group, each group contains the similar news by using cosine similarity method 
+ * Use one keyword/string as 1 value for example keyword = {"1","2","3"} -> template("1","2","3") = (1,1,1)
+ * Steps:
+ *  1) Find template vector or all possible keywords and stemmed string from title
+ *  Ex. news1.keywords = {"1","2","3"} and news2.keywords = {"1","3","4"}
+ *  Template vector should be equal {"1","2","3","4"}
+ *  2) find vector value for every news
+ *  Ex. vector_news1 = (1,1,1,0) and vector_news2 = (1,0,1,1)
+ *  3) calculate cosine similarity to all possible pairs (O(n(n-1)/2)
+ *  Ex. Input = news1, news2, news3, news4
+ *     n = 4, times = 4(4-1)/2 = 6
+ *     calculate these pairs:
+ *                   news1-news2, news1-news3, news1-news4
+ *                   news2-news3, news2-news4, news3-news4
+ *  4) Evaluate groups with threshold
+ *     Example result: news1-news2 = 0.75, news1-news3 = 0.56, news1-news4 = 0.86
+ *                     news2-news3 = 0.82, news2-news4 = 0.45, news3-news4 = 0.90
+ *             Threshold = 0.70
+ *     constrains: to avoid conflict
+ *     4.1) classify by the order; if each news item was already arranged in the group, the pairs which begin with that news will be skipped.
+ *         Ex. the cosine similarity value of news2-news3, news2-news4 will be ignored because news2 was already classified. 
+ *     4.2) if cosine similarity value is more than threshold but the opposite news was already occupied. 
+ *          We will compare cosine similarity between current group and new group and move it to the group that has the greater value.
+ *         Ex. news4 already in the same group with news1 but the value between news3 and new4 are more than 
+ *             the value between news1 and new4 then, news4 will move to be in the same group with news2 instead.
+ *  5) Groups similar news together, create NewsGroup and return
+ * http://www.gettingcirrius.com/2010/12/calculating-similarity-part-1-cosine.html
+ */
 func generateNewsGroup(allNews []News) ([]NewsGroup){
 	// find vector template from intersection of every keyword
 	var vectorTemplate1 []string // vector template for keywords
@@ -328,7 +374,16 @@ func generateNewsGroup(allNews []News) ([]NewsGroup){
 	return result
 }
 
-/* calculate cosine similarity value between vector1 and vector2 */
+/* calculate cosine similarity value between vector1 and vector2 
+ * example: vector1 = (1, 1, 1, 2, 0)    vector2 = (1, 1, 1, 2, 1)
+ * We can now perform the cosine similarity calculation:
+ *   1) Dot Product = (1 * 1) + (1 * 1) + (1 * 1) + (2 * 2) + (0 * 1) = 1 + 1 + 1 + 4 + 0 = 7
+ *   2) Magnitude of apple = √(12 + 12 + 12 + 22 + 02) = √(1 + 1 + 1 + 4 + 0) = √(7)
+ *   3) Magnitude of applet = √(12 + 12 + 12 + 22 + 12) = √(1 + 1 + 1 + 4 + 1) = √(8)
+ *   4) Products of magnitudes A & B =  √(7) * √(8) = √(56) = 7.48331477
+ *   5) Divide the dot product of A & B by the product of magnitude of A & B = 7 / 7.48331477 = .935414347 (or about 94% similar).
+ * http://www.gettingcirrius.com/2010/12/calculating-similarity-part-1-cosine.html
+ */
 func calculateCosineSimilarity(vector1,vector2 []int)(float64){
 	// find dot product between vector 1 and vector 2
 	var dotProduct int = 0
@@ -437,6 +492,7 @@ func topicTraveller(topic Topic,name string, path string)(Topic){
 	return result
 }
 
+/* Send High-level topic to display as menubar */
 func timelineHandler(w http.ResponseWriter, r *http.Request) {
 	topic := readXML();
 
@@ -454,7 +510,7 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
 	fmt.Printf("Query: %s\n", tagname)
 	
 	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
-	
+	// get the previous topic from session
 	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
 		if previous_topic.ParentName == tagname {
 			//previous button was selected
@@ -492,13 +548,15 @@ func topicHandler(w http.ResponseWriter, r *http.Request){
 
 	// Optional. Switch the session to a monotonic behavior.
 	dbSession.SetMode(mgo.Monotonic, true)
-
+	
+	// get all keywords that belong to selected topic
 	collectionKeywords := dbSession.DB(DB_NAME).C(DB_COLLECTION_KEYWORD)
 	collectionKeywords.Find(bson.M{"path":topic.Path + PATH_SEPARATER + topic.Name}).All(&topic.Keywords)
 	
 	//update weight
 	for i := range topic.Keywords {
 		var news []News
+		// get all news that has keywords[i] to calculate weight
 		collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
 		collectionNews.Find(bson.M{"keywords":topic.Keywords[i].ID}).All(&news)
 		k :=  &topic.Keywords[i]
@@ -525,6 +583,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 	
 	session, _ := store.Get(r, SESSION_NAME_TOPIC_HANDLER)
 	
+	// get keyword path from current topic in session
 	if previous_topic, ok := session.Values[SESSION_KEY_PREVIOUS_TOPIC].(*Topic); ok {
 		keyword.Path = previous_topic.Path + PATH_SEPARATER + previous_topic.Name
 	}else{
@@ -542,17 +601,20 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Optional. Switch the session to a monotonic behavior.
 	dbSession.SetMode(mgo.Monotonic, true)
-
+	
+	// get selected keyword details
 	collectionKeywords := dbSession.DB(DB_NAME).C(DB_COLLECTION_KEYWORD)
 	collectionKeywords.Find(bson.M{"keyword":keyword.Name,"path":keyword.Path}).One(&keyword)
 	
 	var news []News
+	// get all news that has selected keyword
 	collectionNews := dbSession.DB(DB_NAME).C(DB_COLLECTION_NEWS)
 	collectionNews.Find(bson.M{"keywords":keyword.ID}).All(&news)
 	
 	collectionRecords := dbSession.DB(DB_NAME).C(DB_COLLECTION_RECORD)
 	for i := range news {
 		var n News
+		// update news details from records database
 		collectionRecords.Find(bson.M{"_id":bson.ObjectIdHex(news[i].NewsID)}).One(&n)
 		n.NewsID = news[i].NewsID
 		n.KeywordIDs = news[i].KeywordIDs
@@ -574,7 +636,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}	
 		fmt.Println(newsList)
-		// connect to Summarization Server
+		// connect to Summarization Server + send newsID to server
 		response, err := http.Get( "http://127.0.0.1:8080/Summary/servlet/server?newslist="+newsList)
 		if err != nil {
 	        fmt.Printf("%s", err)
@@ -602,6 +664,7 @@ func showListHandler(w http.ResponseWriter, r *http.Request) {
   	w.Write(js)
 }
 
+/* show individual news page */
 func indiNewsHandler(w http.ResponseWriter, r *http.Request) {
 	
 	url := r.URL.Query()["url"][0];
